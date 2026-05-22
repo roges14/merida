@@ -1400,15 +1400,25 @@
           <button class="card-tab" onclick="switchCard(this,'pcel-itinerario')">🗺 Itinerario</button>
           <button class="card-tab" onclick="switchCard(this,'pcel-incluye')">✅ Incluye</button>
         </div>
-        <div class="card-pane active" id="pcel-precio">
+        <div class="card-pane active" id="pcn-precio">
           <div class="price-row"><span class="price-label">Precio / persona</span><span
-              class="price-value discounted">Ver Opción A</span></div>
-          <p style="font-size:12.5px;color:var(--muted);padding:12px 0;line-height:1.6;">El tour Celestún en modalidad
-            privada no fue cotizado por separado. Consultar con Elizabeth Denis para precio individual de este día.</p>
-          <div class="total-box" style="background:var(--muted);">
+              class="price-value discounted">$1,730</span></div>
+          <div class="price-row"><span class="price-label">Vehículo</span><span class="price-value"
+              style="font-size:13px;">🚐 Nissan Urvan</span></div>
+          <div class="price-row"><span class="price-label">Duración</span><span class="price-value"
+              style="font-size:13px;">⏱ 8 hrs</span></div>
+          <div class="total-box">
             <div class="total-item full">
-              <p class="lbl">Solicitar cotización</p>
-              <p class="val" style="font-size:1rem;">Contactar a Elizabeth</p>
+              <p class="lbl">Total 8 personas</p>
+              <p class="val big">$13,840</p>
+            </div>
+            <div class="total-item">
+              <p class="lbl">Anticipo (50%)</p>
+              <p class="val">$6,920</p>
+            </div>
+            <div class="total-item">
+              <p class="lbl">Saldo restante</p>
+              <p class="val">$6,920</p>
             </div>
           </div>
         </div>
@@ -1424,15 +1434,26 @@
             </li>
           </ul>
         </div>
-        <div class="card-pane" id="pcel-incluye">
-          <p style="font-size:12px;color:var(--muted);padding:8px 0 12px;line-height:1.6;">Mismos incluye/no incluye que
-            el tour grupal. Consultar precio privado con Elizabeth Denis.</p>
-          <ul class="inc-list">
-            <li><span class="check">✓</span>Transporte exclusivo A/C · Chofer · Guía</li>
-            <li><span class="check">✓</span>Recorrido en lancha · Binoculares</li>
-            <li><span class="check">✓</span>Comida (1 platillo) · Nevera</li>
-            <li><span class="cross" style="color:var(--red);">✗</span>Bebidas en restaurante</li>
-          </ul>
+        <div class="card-pane" id="pcn-incluye">
+          <div class="inc-cols">
+            <div>
+              <p class="inc-sub">✅ Incluye</p>
+              <ul class="inc-list">
+                <li><span class="check">✓</span>Transporte exclusivo A/C</li>
+                <li><span class="check">✓</span>Chofer + Guía certificado</li>
+                <li><span class="check">✓</span>Recorrido en lancha por la reserva natural.</li>
+                <li><span class="check">✓</span>Binoculares para el avistamiento de aves durante el paseo en lancha.</li>
+                <li><span class="check">✓</span>Comida a la carta en un restaurante a la orilla de la playa.</li>
+                <li><span class="check">✓</span>Nevera con hielo abordo del vehículo.</li>
+              </ul>
+            </div>
+            <div>
+              <p class="inc-sub">❌ No incluye</p>
+              <ul class="no-inc-list">
+                <li><span class="cross">✗</span>- Bebidas durante la comida</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
 
