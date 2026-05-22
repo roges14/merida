@@ -858,6 +858,10 @@
             <p class="val highlight">$32,160</p>
           </div>
           <div class="sum-item">
+            <p class="lbl">Total P/P</p>
+            <p class="val highlight">$4,020</p>
+          </div>
+          <div class="sum-item">
             <p class="lbl">Total anticipos</p>
             <p class="val">$16,000</p>
           </div>
@@ -1194,6 +1198,10 @@
             <p class="val highlight">$33,504</p>
           </div>
           <div class="sum-item">
+            <p class="lbl">Total P/P</p>
+            <p class="val highlight">$4,188</p>
+          </div>
+          <div class="sum-item">
             <p class="lbl">Total anticipos</p>
             <p class="val">$16,000</p>
           </div>
@@ -1378,53 +1386,73 @@
       </div>
 
       <!-- MARTES PRIV: Celestún -->
-      <div class="card" style="border-top:3px solid var(--gold);">
+      <div class="card">
         <div class="card-top">
-          <div class="card-icon" style="background:#fef9ec;">🦩</div>
+          <div class="card-icon">🦩</div>
           <div>
-            <p class="card-day">Martes · 21 Oct 2026 · <span style="color:var(--gold);font-weight:700;">PRIVADO</span>
-            </p>
+            <p class="card-day">Martes · 21 Oct 2026</p>
             <p class="card-name">Celestún Plus</p>
           </div>
         </div>
         <div class="card-tabs">
-          <button class="card-tab active" onclick="switchCard(this,'pcel-precio')">💰 Precio</button>
-          <button class="card-tab" onclick="switchCard(this,'pcel-itinerario')">🗺 Itinerario</button>
-          <button class="card-tab" onclick="switchCard(this,'pcel-incluye')">✅ Incluye</button>
+          <button class="card-tab active" onclick="switchCard(this,'cel-precio')">💰 Precio</button>
+          <button class="card-tab" onclick="switchCard(this,'cel-itinerario')">🗺 Itinerario</button>
+          <button class="card-tab" onclick="switchCard(this,'cel-incluye')">✅ Incluye</button>
         </div>
-        <div class="card-pane active" id="pcel-precio">
-          <div class="price-row"><span class="price-label">Precio / persona</span><span
-              class="price-value discounted">Ver Opción A</span></div>
-          <p style="font-size:12.5px;color:var(--muted);padding:12px 0;line-height:1.6;">El tour Celestún en modalidad
-            privada no fue cotizado por separado. Consultar con Elizabeth Denis para precio individual de este día.</p>
-          <div class="total-box" style="background:var(--muted);">
+        <div class="card-pane active" id="cel-precio">
+          <div class="price-row"><span class="price-label">Precio original / persona</span><span
+              class="price-value original">$1,475</span></div>
+          <div class="price-row"><span class="price-label">Con descuento <span
+                class="discount-chip">−20%</span></span><span class="price-value discounted">$1,180</span></div>
+          <div class="total-box">
             <div class="total-item full">
-              <p class="lbl">Solicitar cotización</p>
-              <p class="val" style="font-size:1rem;">Contactar a Elizabeth</p>
+              <p class="lbl">Total 8 personas</p>
+              <p class="val big">$9,440</p>
+            </div>
+            <div class="total-item">
+              <p class="lbl">Anticipo</p>
+              <p class="val">$4,000</p>
+            </div>
+            <div class="total-item">
+              <p class="lbl">Saldo restante</p>
+              <p class="val">$5,440</p>
             </div>
           </div>
         </div>
-        <div class="card-pane" id="pcel-itinerario">
+        <div class="card-pane" id="cel-itinerario">
           <ul class="itinerary">
             <li><span class="it-time">08:00 am</span><span class="it-place"><strong>Salida desde Mérida</strong></span>
             </li>
-            <li><span class="it-time">10:15–12:15</span><span class="it-place"><strong>Recorrido en lancha</strong>
-                Flamencos, manglares, baño maya con arcilla (1.5 hrs)</span></li>
-            <li><span class="it-time">12:30–03:30</span><span class="it-place"><strong>Rest. Ramada de la Tía
-                  Candi</strong> Comida frente al mar + tiempo libre playa (3 hrs)</span></li>
-            <li><span class="it-time">~05:30 pm</span><span class="it-place"><strong>Regreso a Mérida</strong></span>
+            <li><span class="it-time">10:15–12:15</span><span class="it-place"><strong>Recorrido en lancha –
+                  Celestún</strong> Isla de pájaros, flamencos rosados, túnel de manglares, ojo de agua, baño maya con
+                arcilla (1.5 hrs)</span></li>
+            <li><span class="it-time">12:30–03:30</span><span class="it-place"><strong>Restaurante Ramada de la Tía
+                  Candi</strong> Comida frente al mar + tiempo libre en playa (3 hrs)</span></li>
+            <li><span class="it-time">05:00–05:30</span><span class="it-place"><strong>Regreso a Mérida</strong></span>
             </li>
           </ul>
         </div>
-        <div class="card-pane" id="pcel-incluye">
-          <p style="font-size:12px;color:var(--muted);padding:8px 0 12px;line-height:1.6;">Mismos incluye/no incluye que
-            el tour grupal. Consultar precio privado con Elizabeth Denis.</p>
-          <ul class="inc-list">
-            <li><span class="check">✓</span>Transporte exclusivo A/C · Chofer · Guía</li>
-            <li><span class="check">✓</span>Recorrido en lancha · Binoculares</li>
-            <li><span class="check">✓</span>Comida (1 platillo) · Nevera</li>
-            <li><span class="cross" style="color:var(--red);">✗</span>Bebidas en restaurante</li>
-          </ul>
+        <div class="card-pane" id="cel-incluye">
+          <div class="inc-cols">
+            <div>
+              <p class="inc-sub">✅ Incluye</p>
+              <ul class="inc-list">
+                <li><span class="check">✓</span>Transporte moderno A/C</li>
+                <li><span class="check">✓</span>Guía certificado</li>
+                <li><span class="check">✓</span>Recorrido en lancha</li>
+                <li><span class="check">✓</span>Binoculares p/ aves</li>
+                <li><span class="check">✓</span>Comida (1 platillo)</li>
+                <li><span class="check">✓</span>Instalaciones restaurante</li>
+                <li><span class="check">✓</span>Nevera con hielo</li>
+              </ul>
+            </div>
+            <div>
+              <p class="inc-sub">❌ No incluye</p>
+              <ul class="no-inc-list">
+                <li><span class="cross">✗</span>Bebidas en restaurante</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -1941,6 +1969,10 @@
             <p class="val highlight">$51,320</p>
           </div>
           <div class="sum-item">
+            <p class="lbl">Total P/P</p>
+            <p class="val highlight">$6,415</p>
+          </div>
+          <div class="sum-item">
             <p class="lbl">Total anticipos (50%)</p>
             <p class="val">$25,660</p>
           </div>
@@ -1955,10 +1987,7 @@
         </p>
       </div>
     </div>
-  </div><!-- /ppanel-pcolo -->
-
-  <footer>Cotización emitida por Viajes Colibrí Yucatán · Atiende: Elizabeth Denis (disponible desde el Lunes 25 de
-    mayo) · Todos los precios en MXN · Tours desde Mérida</footer>
+  </div>
 
   <script>
     function switchMain(option) {
