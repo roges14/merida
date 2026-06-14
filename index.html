@@ -1,2024 +1,1554 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cotización Yucatán – 8 Personas</title>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap"
-    rel="stylesheet">
-  <style>
-    :root {
-      --sand: #f5ede0;
-      --clay: #c8784a;
-      --jungle: #2d5a3d;
-      --teal: #1e7b6e;
-      --sky: #a8d5e2;
-      --cream: #fdf8f2;
-      --ink: #1a1612;
-      --muted: #8a7e72;
-      --gold: #d4a843;
-      --red: #c0392b;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--cream);
-      color: var(--ink);
-    }
-
-    /* HEADER */
-    header {
-      background: var(--jungle);
-      padding: 56px 40px 64px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    header::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");
-    }
-
-    header::after {
-      content: '';
-      position: absolute;
-      bottom: -1px;
-      left: 0;
-      right: 0;
-      height: 44px;
-      background: var(--cream);
-      clip-path: ellipse(55% 100% at 50% 100%);
-    }
-
-    .header-tag {
-      font-size: 11px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--sky);
-      font-weight: 500;
-      margin-bottom: 12px;
-    }
-
-    header h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 5vw, 3.2rem);
-      color: #fff;
-      line-height: 1.15;
-    }
-
-    header h1 em {
-      font-style: italic;
-      color: var(--gold);
-    }
-
-    .header-meta {
-      margin-top: 20px;
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .badge {
-      background: rgba(255, 255, 255, 0.12);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      color: #fff;
-      padding: 6px 16px;
-      border-radius: 100px;
-      font-size: 13px;
-    }
-
-    .badge strong {
-      font-weight: 600;
-    }
-
-    /* TABS */
-    .section-label {
-      text-align: center;
-      padding: 44px 20px 6px;
-      font-size: 11px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    .section-title {
-      text-align: center;
-      font-family: 'Playfair Display', serif;
-      font-size: 1.6rem;
-      margin-bottom: 24px;
-      color: var(--jungle);
-    }
-
-    .tabs-wrapper {
-      max-width: 1100px;
-      margin: 0 auto 24px;
-      padding: 0 28px;
-      display: flex;
-      gap: 10px;
-    }
-
-    .tab-btn {
-      flex: 1;
-      padding: 14px 10px;
-      border-radius: 14px;
-      border: 2px solid #e8e0d6;
-      cursor: pointer;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 13px;
-      font-weight: 500;
-      transition: all .2s;
-      background: #fff;
-      color: var(--muted);
-    }
-
-    .tab-btn.active {
-      background: var(--jungle);
-      color: #fff;
-      border-color: var(--jungle);
-    }
-
-    .tab-btn span {
-      font-size: 20px;
-      display: block;
-      margin-bottom: 4px;
-    }
-
-    .option-panel {
-      display: none;
-    }
-
-    .option-panel.active {
-      display: block;
-    }
-
-    /* CARDS GRID */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 28px 32px;
-    }
-
-    .card {
-      background: #fff;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 4px 20px rgba(45, 90, 61, 0.08);
-      transition: transform .25s, box-shadow .25s;
-      animation: fadeUp .45s ease both;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 14px 38px rgba(45, 90, 61, 0.14);
-    }
-
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-
-      to {
-        opacity: 1;
-        transform: none;
-      }
-    }
-
-    .card:nth-child(1) {
-      animation-delay: .05s
-    }
-
-    .card:nth-child(2) {
-      animation-delay: .15s
-    }
-
-    .card:nth-child(3) {
-      animation-delay: .25s
-    }
-
-    .card:nth-child(4) {
-      animation-delay: .35s
-    }
-
-    /* card header */
-    .card-top {
-      padding: 20px 22px 16px;
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-      border-bottom: 1px solid #f0ebe4;
-    }
-
-    .card-icon {
-      font-size: 1.8rem;
-      width: 50px;
-      height: 50px;
-      border-radius: 13px;
-      background: var(--sand);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .card-day {
-      font-size: 10px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 3px;
-    }
-
-    .card-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.05rem;
-      color: var(--jungle);
-      line-height: 1.3;
-    }
-
-    /* tabs inside card */
-    .card-tabs {
-      display: flex;
-      border-bottom: 1px solid #f0ebe4;
-    }
-
-    .card-tab {
-      flex: 1;
-      padding: 10px 6px;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: .5px;
-      text-transform: uppercase;
-      color: var(--muted);
-      cursor: pointer;
-      text-align: center;
-      border-bottom: 2px solid transparent;
-      transition: all .18s;
-      background: none;
-      border-top: none;
-      border-left: none;
-      border-right: none;
-      font-family: 'DM Sans', sans-serif;
-    }
-
-    .card-tab.active {
-      color: var(--jungle);
-      border-bottom-color: var(--jungle);
-    }
-
-    .card-pane {
-      display: none;
-      padding: 18px 22px 20px;
-    }
-
-    .card-pane.active {
-      display: block;
-    }
-
-    /* precio pane */
-    .price-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 11px 0;
-      border-bottom: 1px solid #f0ebe4;
-    }
-
-    .price-row:last-of-type {
-      border-bottom: none;
-    }
-
-    .price-label {
-      font-size: 12px;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: .8px;
-    }
-
-    .price-value {
-      font-size: 14px;
-      font-weight: 500;
-    }
-
-    .price-value.original {
-      text-decoration: line-through;
-      color: var(--muted);
-      font-weight: 300;
-      font-size: 13px;
-    }
-
-    .price-value.discounted {
-      color: var(--teal);
-      font-size: 15px;
-      font-weight: 600;
-    }
-
-    .discount-chip {
-      display: inline-block;
-      background: #e8f5f0;
-      color: var(--teal);
-      font-size: 10px;
-      font-weight: 700;
-      padding: 2px 8px;
-      border-radius: 100px;
-      margin-left: 6px;
-      letter-spacing: .3px;
-    }
-
-    .total-box {
-      margin-top: 16px;
-      background: var(--jungle);
-      border-radius: 13px;
-      padding: 16px 18px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-
-    .total-item .lbl {
-      font-size: 9.5px;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, .5);
-      margin-bottom: 3px;
-    }
-
-    .total-item .val {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.1rem;
-      color: #fff;
-    }
-
-    .total-item .val.big {
-      font-size: 1.4rem;
-      color: var(--gold);
-    }
-
-    .total-item.full {
-      grid-column: 1 / -1;
-    }
-
-    /* itinerario pane */
-    .itinerary {
-      list-style: none;
-    }
-
-    .itinerary li {
-      display: flex;
-      gap: 12px;
-      padding: 9px 0;
-      border-bottom: 1px dashed #ede6db;
-      font-size: 13px;
-      line-height: 1.45;
-    }
-
-    .itinerary li:last-child {
-      border-bottom: none;
-    }
-
-    .it-time {
-      color: var(--clay);
-      font-weight: 600;
-      font-size: 11.5px;
-      white-space: nowrap;
-      padding-top: 1px;
-      min-width: 90px;
-    }
-
-    .it-place {
-      color: var(--ink);
-    }
-
-    .it-place strong {
-      display: block;
-      font-size: 12.5px;
-      color: var(--jungle);
-    }
-
-    /* incluye pane */
-    .inc-cols {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0 16px;
-    }
-
-    .inc-list,
-    .no-inc-list {
-      list-style: none;
-    }
-
-    .inc-list li,
-    .no-inc-list li {
-      font-size: 12px;
-      padding: 5px 0;
-      border-bottom: 1px solid #f4ede4;
-      display: flex;
-      gap: 6px;
-      line-height: 1.35;
-    }
-
-    .inc-list li:last-child,
-    .no-inc-list li:last-child {
-      border-bottom: none;
-    }
-
-    .check {
-      color: var(--teal);
-      font-size: 13px;
-      flex-shrink: 0;
-    }
-
-    .cross {
-      color: var(--red);
-      font-size: 13px;
-      flex-shrink: 0;
-    }
-
-    .inc-sub {
-      font-size: 10.5px;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin: 12px 0 6px;
-    }
-
-    /* RESUMEN */
-    .summary-wrap {
-      max-width: 1100px;
-      margin: 0 auto 60px;
-      padding: 0 28px;
-    }
-
-    .summary-card {
-      background: var(--sand);
-      border-radius: 20px;
-      padding: 30px 32px;
-      border: 1px solid #e4d8c8;
-    }
-
-    .summary-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 20px;
-      margin-bottom: 24px;
-    }
-
-    .sum-item .lbl {
-      font-size: 11px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 5px;
-    }
-
-    .sum-item .val {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.55rem;
-      color: var(--jungle);
-    }
-
-    .sum-item .val.highlight {
-      color: var(--clay);
-    }
-
-    .note {
-      font-size: 12.5px;
-      color: var(--muted);
-      line-height: 1.75;
-      border-top: 1px solid #e4d8c8;
-      padding-top: 18px;
-    }
-
-    .note strong {
-      color: var(--ink);
-    }
-
-    footer {
-      text-align: center;
-      padding: 24px;
-      font-size: 12px;
-      color: var(--muted);
-      border-top: 1px solid #ede6db;
-      margin-top: 20px;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cotización Yucatán – 8 Personas</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sand: #f5ede0;
+    --clay: #c8784a;
+    --jungle: #2d5a3d;
+    --teal: #1e7b6e;
+    --sky: #a8d5e2;
+    --cream: #fdf8f2;
+    --ink: #1a1612;
+    --muted: #8a7e72;
+    --gold: #d4a843;
+    --red: #c0392b;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--ink); }
+
+  /* HEADER */
+  header {
+    background: var(--jungle);
+    padding: 56px 40px 64px;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");
+  }
+  header::after {
+    content: ''; position: absolute; bottom: -1px; left: 0; right: 0;
+    height: 44px; background: var(--cream);
+    clip-path: ellipse(55% 100% at 50% 100%);
+  }
+  .header-tag { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--sky); font-weight: 500; margin-bottom: 12px; }
+  header h1 { font-family: 'Playfair Display', serif; font-size: clamp(2rem,5vw,3.2rem); color: #fff; line-height: 1.15; }
+  header h1 em { font-style: italic; color: var(--gold); }
+  .header-meta { margin-top: 20px; display: flex; gap: 12px; flex-wrap: wrap; }
+  .badge { background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 6px 16px; border-radius: 100px; font-size: 13px; }
+  .badge strong { font-weight: 600; }
+
+  /* TABS */
+  .section-label { text-align: center; padding: 44px 20px 6px; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); }
+  .section-title { text-align: center; font-family: 'Playfair Display', serif; font-size: 1.6rem; margin-bottom: 24px; color: var(--jungle); }
+  .tabs-wrapper { max-width: 1100px; margin: 0 auto 24px; padding: 0 28px; display: flex; gap: 10px; }
+  .tab-btn { flex: 1; padding: 14px 10px; border-radius: 14px; border: 2px solid #e8e0d6; cursor: pointer; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; transition: all .2s; background: #fff; color: var(--muted); }
+  .tab-btn.active { background: var(--jungle); color: #fff; border-color: var(--jungle); }
+  .tab-btn span { font-size: 20px; display: block; margin-bottom: 4px; }
+  .option-panel { display: none; }
+  .option-panel.active { display: block; }
+
+  /* CARDS GRID */
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; max-width: 1100px; margin: 0 auto; padding: 0 28px 32px; }
+
+  .card { background: #fff; border-radius: 20px; overflow: hidden; box-shadow: 0 4px 20px rgba(45,90,61,0.08); transition: transform .25s, box-shadow .25s; animation: fadeUp .45s ease both; }
+  .card:hover { transform: translateY(-5px); box-shadow: 0 14px 38px rgba(45,90,61,0.14); }
+  @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:none; } }
+  .card:nth-child(1){animation-delay:.05s} .card:nth-child(2){animation-delay:.15s} .card:nth-child(3){animation-delay:.25s} .card:nth-child(4){animation-delay:.35s}
+
+  /* card header */
+  .card-top { padding: 20px 22px 16px; display: flex; align-items: flex-start; gap: 14px; border-bottom: 1px solid #f0ebe4; }
+  .card-icon { font-size: 1.8rem; width: 50px; height: 50px; border-radius: 13px; background: var(--sand); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .card-day { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 3px; }
+  .card-name { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--jungle); line-height: 1.3; }
+
+  /* tabs inside card */
+  .card-tabs { display: flex; border-bottom: 1px solid #f0ebe4; }
+  .card-tab { flex: 1; padding: 10px 6px; font-size: 11px; font-weight: 600; letter-spacing: .5px; text-transform: uppercase; color: var(--muted); cursor: pointer; text-align: center; border-bottom: 2px solid transparent; transition: all .18s; background: none; border-top: none; border-left: none; border-right: none; font-family: 'DM Sans', sans-serif; }
+  .card-tab.active { color: var(--jungle); border-bottom-color: var(--jungle); }
+
+  .card-pane { display: none; padding: 18px 22px 20px; }
+  .card-pane.active { display: block; }
+
+  /* precio pane */
+  .price-row { display: flex; justify-content: space-between; align-items: center; padding: 11px 0; border-bottom: 1px solid #f0ebe4; }
+  .price-row:last-of-type { border-bottom: none; }
+  .price-label { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .8px; }
+  .price-value { font-size: 14px; font-weight: 500; }
+  .price-value.original { text-decoration: line-through; color: var(--muted); font-weight: 300; font-size: 13px; }
+  .price-value.discounted { color: var(--teal); font-size: 15px; font-weight: 600; }
+  .discount-chip { display: inline-block; background: #e8f5f0; color: var(--teal); font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 100px; margin-left: 6px; letter-spacing: .3px; }
+  .total-box { margin-top: 16px; background: var(--jungle); border-radius: 13px; padding: 16px 18px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .total-item .lbl { font-size: 9.5px; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,.5); margin-bottom: 3px; }
+  .total-item .val { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: #fff; }
+  .total-item .val.big { font-size: 1.4rem; color: var(--gold); }
+  .total-item.full { grid-column: 1 / -1; }
+
+  /* itinerario pane */
+  .itinerary { list-style: none; }
+  .itinerary li { display: flex; gap: 12px; padding: 9px 0; border-bottom: 1px dashed #ede6db; font-size: 13px; line-height: 1.45; }
+  .itinerary li:last-child { border-bottom: none; }
+  .it-time { color: var(--clay); font-weight: 600; font-size: 11.5px; white-space: nowrap; padding-top: 1px; min-width: 90px; }
+  .it-place { color: var(--ink); }
+  .it-place strong { display: block; font-size: 12.5px; color: var(--jungle); }
+
+  /* incluye pane */
+  .inc-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 0 16px; }
+  .inc-list, .no-inc-list { list-style: none; }
+  .inc-list li, .no-inc-list li { font-size: 12px; padding: 5px 0; border-bottom: 1px solid #f4ede4; display: flex; gap: 6px; line-height: 1.35; }
+  .inc-list li:last-child, .no-inc-list li:last-child { border-bottom: none; }
+  .check { color: var(--teal); font-size: 13px; flex-shrink: 0; }
+  .cross { color: var(--red); font-size: 13px; flex-shrink: 0; }
+  .inc-sub { font-size: 10.5px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin: 12px 0 6px; }
+
+  /* RESUMEN */
+  .summary-wrap { max-width: 1100px; margin: 0 auto 60px; padding: 0 28px; }
+  .summary-card { background: var(--sand); border-radius: 20px; padding: 30px 32px; border: 1px solid #e4d8c8; }
+  .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 20px; margin-bottom: 24px; }
+  .sum-item .lbl { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 5px; }
+  .sum-item .val { font-family: 'Playfair Display', serif; font-size: 1.55rem; color: var(--jungle); }
+  .sum-item .val.highlight { color: var(--clay); }
+  .note { font-size: 12.5px; color: var(--muted); line-height: 1.75; border-top: 1px solid #e4d8c8; padding-top: 18px; }
+  .note strong { color: var(--ink); }
+
+  footer { text-align: center; padding: 24px; font-size: 12px; color: var(--muted); border-top: 1px solid #ede6db; margin-top: 20px; }
+</style>
 </head>
-
 <body>
 
-  <header>
-    <p class="header-tag">Viajes Colibrí Yucatán · Octubre 2026</p>
-    <h1>Cotización <em>Yucatán</em><br>para 8 personas</h1>
-    <div class="header-meta">
-      <span class="badge">📅 <strong>19–23 Oct 2026</strong></span>
-      <span class="badge">👥 <strong>8 personas</strong></span>
-      <span class="badge">🏷️ <strong>20% descuento grupal</strong></span>
-      <span class="badge">🚐 <strong>Tours grupales (hasta 19 pax)</strong></span>
-    </div>
-  </header>
-
-  <p class="section-label" style="margin-top:44px;">Selecciona tu opción del martes 21</p>
-  <h2 class="section-title">Dos itinerarios disponibles para el <em
-      style="font-style:italic;color:var(--clay)">martes</em></h2>
-
-  <div class="tabs-wrapper">
-    <button class="tab-btn active" onclick="switchMain('celestun')">
-      <span>🦩</span> Opción A · Celestún Plus
-    </button>
-    <button class="tab-btn" onclick="switchMain('coloradas')">
-      <span>🐊</span> Opción B · Coloradas Plus
-    </button>
+<header>
+  <p class="header-tag">Viajes Colibrí Yucatán · Octubre 2026</p>
+  <h1>Cotización <em>Yucatán</em><br>para 8 personas</h1>
+  <div class="header-meta">
+    <span class="badge">📅 <strong>19–23 Oct 2026</strong></span>
+    <span class="badge">👥 <strong>8 personas</strong></span>
+    <span class="badge">🏷️ <strong>20% descuento grupal</strong></span>
+    <span class="badge">🚐 <strong>Tours grupales (hasta 19 pax)</strong></span>
   </div>
+</header>
 
-  <!-- ===== OPCIÓN A: CELESTÚN ===== -->
-  <div class="option-panel active" id="panel-celestun">
-    <div class="grid">
+<p class="section-label" style="margin-top:44px;">Selecciona tu opción del martes 21</p>
+<h2 class="section-title">Dos itinerarios disponibles para el <em style="font-style:italic;color:var(--clay)">martes</em></h2>
 
-      <!-- LUNES: CHICHÉN ITZÁ -->
-      <div class="card">
-        <div class="card-top">
-          <div class="card-icon">👒</div>
-          <div>
-            <p class="card-day">Lunes · 19 Oct 2026</p>
-            <p class="card-name">Chichén Itzá Premium</p>
-          </div>
-        </div>
-        <div class="card-tabs">
-          <button class="card-tab active" onclick="switchCard(this,'ci-precio')">💰 Precio</button>
-          <button class="card-tab" onclick="switchCard(this,'ci-itinerario')">🗺 Itinerario</button>
-          <button class="card-tab" onclick="switchCard(this,'ci-incluye')">✅ Incluye</button>
-        </div>
-        <div class="card-pane active" id="ci-precio">
-          <div class="price-row"><span class="price-label">Precio original / persona</span><span
-              class="price-value original">$1,150</span></div>
-          <div class="price-row"><span class="price-label">Con descuento <span
-                class="discount-chip">−20%</span></span><span class="price-value discounted">$920</span></div>
-          <div class="total-box">
-            <div class="total-item full">
-              <p class="lbl">Total 8 personas</p>
-              <p class="val big">$7,360</p>
-            </div>
-            <div class="total-item">
-              <p class="lbl">Anticipo</p>
-              <p class="val">$4,000</p>
-            </div>
-            <div class="total-item">
-              <p class="lbl">Saldo restante</p>
-              <p class="val">$3,360</p>
-            </div>
-          </div>
-        </div>
-        <div class="card-pane" id="ci-itinerario">
-          <ul class="itinerary">
-            <li><span class="it-time">07:00 am</span><span class="it-place"><strong>Salida desde Mérida</strong></span>
-            </li>
-            <li><span class="it-time">09:30–12:00</span><span class="it-place"><strong>Chichén Itzá</strong> Zona
-                arqueológica (2.5 hrs)</span></li>
-            <li><span class="it-time">12:15–01:45</span><span class="it-place"><strong>Cenote Ik Kil</strong> Aguas
-                cristalinas, nadar (1.5 hrs)</span></li>
-            <li><span class="it-time">02:00–03:00</span><span class="it-place"><strong>Restaurante Xaybe'h de
-                  Cámara</strong> Buffet (1 hr)</span></li>
-            <li><span class="it-time">04:00–05:30</span><span class="it-place"><strong>Izamal</strong> Pueblo Mágico "la
-                ciudad dorada" (1.5 hrs)</span></li>
-            <li><span class="it-time">06:30–07:00</span><span class="it-place"><strong>Regreso a Mérida</strong></span>
-            </li>
-          </ul>
-        </div>
-        <div class="card-pane" id="ci-incluye">
-          <div class="inc-cols">
-            <div>
-              <p class="inc-sub">✅ Incluye</p>
-              <ul class="inc-list">
-                <li><span class="check">✓</span>Transporte moderno A/C</li>
-                <li><span class="check">✓</span>Guía certificado</li>
-                <li><span class="check">✓</span>Entrada Cenote Ik Kil</li>
-                <li><span class="check">✓</span>Chaleco salvavidas</li>
-                <li><span class="check">✓</span>Locker en cenote</li>
-                <li><span class="check">✓</span>Buffet + agua fresca</li>
-                <li><span class="check">✓</span>Nevera con hielo</li>
-              </ul>
-            </div>
-            <div>
-              <p class="inc-sub">❌ No incluye</p>
-              <ul class="no-inc-list">
-                <li><span class="cross">✗</span>Entrada zona arqueológica:<br>MX $310 / Ext $697</li>
-              </ul>
-              <p style="font-size:11px;color:var(--muted);margin-top:10px;line-height:1.5;">Gratis con credencial
-                vigente de maestro, estudiante, 3ª edad o menores de 12. Domingo gratis para mexicanos con ID oficial.
-              </p>
-            </div>
-          </div>
+<div class="tabs-wrapper">
+  <button class="tab-btn active" onclick="switchMain('celestun')">
+    <span>🦩</span> Opción A · Celestún Plus
+  </button>
+  <button class="tab-btn" onclick="switchMain('coloradas')">
+    <span>🐊</span> Opción B · Coloradas Plus
+  </button>
+</div>
+
+<!-- ===== OPCIÓN A: CELESTÚN ===== -->
+<div class="option-panel active" id="panel-celestun">
+  <div class="grid">
+
+    <!-- LUNES: CHICHÉN ITZÁ -->
+    <div class="card">
+      <div class="card-top">
+        <div class="card-icon">👒</div>
+        <div>
+          <p class="card-day">Lunes · 19 Oct 2026</p>
+          <p class="card-name">Chichén Itzá Premium</p>
         </div>
       </div>
-
-      <!-- MARTES: CELESTÚN -->
-      <div class="card">
-        <div class="card-top">
-          <div class="card-icon">🦩</div>
-          <div>
-            <p class="card-day">Martes · 21 Oct 2026</p>
-            <p class="card-name">Celestún Plus</p>
-          </div>
-        </div>
-        <div class="card-tabs">
-          <button class="card-tab active" onclick="switchCard(this,'cel-precio')">💰 Precio</button>
-          <button class="card-tab" onclick="switchCard(this,'cel-itinerario')">🗺 Itinerario</button>
-          <button class="card-tab" onclick="switchCard(this,'cel-incluye')">✅ Incluye</button>
-        </div>
-        <div class="card-pane active" id="cel-precio">
-          <div class="price-row"><span class="price-label">Precio original / persona</span><span
-              class="price-value original">$1,475</span></div>
-          <div class="price-row"><span class="price-label">Con descuento <span
-                class="discount-chip">−20%</span></span><span class="price-value discounted">$1,180</span></div>
-          <div class="total-box">
-            <div class="total-item full">
-              <p class="lbl">Total 8 personas</p>
-              <p class="val big">$9,440</p>
-            </div>
-            <div class="total-item">
-              <p class="lbl">Anticipo</p>
-              <p class="val">$4,000</p>
-            </div>
-            <div class="total-item">
-              <p class="lbl">Saldo restante</p>
-              <p class="val">$5,440</p>
-            </div>
-          </div>
-        </div>
-        <div class="card-pane" id="cel-itinerario">
-          <ul class="itinerary">
-            <li><span class="it-time">08:00 am</span><span class="it-place"><strong>Salida desde Mérida</strong></span>
-            </li>
-            <li><span class="it-time">10:15–12:15</span><span class="it-place"><strong>Recorrido en lancha –
-                  Celestún</strong> Isla de pájaros, flamencos rosados, túnel de manglares, ojo de agua, baño maya con
-                arcilla (1.5 hrs)</span></li>
-            <li><span class="it-time">12:30–03:30</span><span class="it-place"><strong>Restaurante Ramada de la Tía
-                  Candi</strong> Comida frente al mar + tiempo libre en playa (3 hrs)</span></li>
-            <li><span class="it-time">05:00–05:30</span><span class="it-place"><strong>Regreso a Mérida</strong></span>
-            </li>
-          </ul>
-        </div>
-        <div class="card-pane" id="cel-incluye">
-          <div class="inc-cols">
-            <div>
-              <p class="inc-sub">✅ Incluye</p>
-              <ul class="inc-list">
-                <li><span class="check">✓</span>Transporte moderno A/C</li>
-                <li><span class="check">✓</span>Guía certificado</li>
-                <li><span class="check">✓</span>Recorrido en lancha</li>
-                <li><span class="check">✓</span>Binoculares p/ aves</li>
-                <li><span class="check">✓</span>Comida (1 platillo)</li>
-                <li><span class="check">✓</span>Instalaciones restaurante</li>
-                <li><span class="check">✓</span>Nevera con hielo</li>
-              </ul>
-            </div>
-            <div>
-              <p class="inc-sub">❌ No incluye</p>
-              <ul class="no-inc-list">
-                <li><span class="cross">✗</span>Bebidas en restaurante</li>
-              </ul>
-            </div>
-          </div>
+      <div class="card-tabs">
+        <button class="card-tab active" onclick="switchCard(this,'ci-precio')">💰 Precio</button>
+        <button class="card-tab" onclick="switchCard(this,'ci-itinerario')">🗺 Itinerario</button>
+        <button class="card-tab" onclick="switchCard(this,'ci-incluye')">✅ Incluye</button>
+      </div>
+      <div class="card-pane active" id="ci-precio">
+        <div class="price-row"><span class="price-label">Precio original / persona</span><span class="price-value original">$1,150</span></div>
+        <div class="price-row"><span class="price-label">Con descuento <span class="discount-chip">−20%</span></span><span class="price-value discounted">$920</span></div>
+        <div class="total-box">
+          <div class="total-item full"><p class="lbl">Total 8 personas</p><p class="val big">$7,360</p></div>
+          <div class="total-item"><p class="lbl">Anticipo</p><p class="val">$4,000</p></div>
+          <div class="total-item"><p class="lbl">Saldo restante</p><p class="val">$3,360</p></div>
         </div>
       </div>
-
-      <!-- MIÉRCOLES: 4 CENOTES -->
-      <div class="card">
-        <div class="card-top">
-          <div class="card-icon">🥽</div>
-          <div>
-            <p class="card-day">Miércoles · 22 Oct 2026</p>
-            <p class="card-name">4 Cenotes Plus</p>
-          </div>
-        </div>
-        <div class="card-tabs">
-          <button class="card-tab active" onclick="switchCard(this,'cn-precio')">💰 Precio</button>
-          <button class="card-tab" onclick="switchCard(this,'cn-itinerario')">🗺 Itinerario</button>
-          <button class="card-tab" onclick="switchCard(this,'cn-incluye')">✅ Incluye</button>
-        </div>
-        <div class="card-pane active" id="cn-precio">
-          <div class="price-row"><span class="price-label">Precio original / persona</span><span
-              class="price-value original">$1,225</span></div>
-          <div class="price-row"><span class="price-label">Con descuento <span
-                class="discount-chip">−20%</span></span><span class="price-value discounted">$980</span></div>
-          <div class="total-box">
-            <div class="total-item full">
-              <p class="lbl">Total 8 personas</p>
-              <p class="val big">$7,840</p>
-            </div>
-            <div class="total-item">
-              <p class="lbl">Anticipo</p>
-              <p class="val">$4,000</p>
-            </div>
-            <div class="total-item">
-              <p class="lbl">Saldo restante</p>
-              <p class="val">$3,840</p>
-            </div>
-          </div>
-        </div>
-        <div class="card-pane" id="cn-itinerario">
-          <ul class="itinerary">
-            <li><span class="it-time">08:00 am</span><span class="it-place"><strong>Salida desde Mérida</strong></span>
-            </li>
-            <li><span class="it-time">09:45–11:45</span><span class="it-place"><strong>Cenotes Santa Rosa</strong>
-                Cenote abierto Yuum Kimil + caverna Santa Rosa (2 hrs)</span></li>
-            <li><span class="it-time">12:00–01:00</span><span class="it-place"><strong>Cenote Pool Uinic</strong>
-                Caverna con aguas cristalinas (1 hr)</span></li>
-            <li><span class="it-time">01:15–03:45</span><span class="it-place"><strong>Cenote & Rest. San
-                  Antonio</strong> Nado en cenote caverna + comida típica (2.5 hrs)</span></li>
-            <li><span class="it-time">04:45–05:15</span><span class="it-place"><strong>Regreso a Mérida</strong></span>
-            </li>
-          </ul>
-        </div>
-        <div class="card-pane" id="cn-incluye">
-          <div class="inc-cols">
-            <div>
-              <p class="inc-sub">✅ Incluye</p>
-              <ul class="inc-list">
-                <li><span class="check">✓</span>Transporte moderno A/C</li>
-                <li><span class="check">✓</span>Guía certificado</li>
-                <li><span class="check">✓</span>Entradas a cenotes</li>
-                <li><span class="check">✓</span>Chaleco salvavidas</li>
-                <li><span class="check">✓</span>Mascarilla de snorkel</li>
-                <li><span class="check">✓</span>Comida típica regional</li>
-                <li><span class="check">✓</span>Nevera con hielo</li>
-              </ul>
-            </div>
-            <div>
-              <p class="inc-sub">❌ No incluye</p>
-              <ul class="no-inc-list">
-                <li><span class="cross">✗</span>Bebidas en restaurante</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- JUEVES: UXMAL -->
-      <div class="card">
-        <div class="card-top">
-          <div class="card-icon">🍫</div>
-          <div>
-            <p class="card-day">Jueves · 23 Oct 2026</p>
-            <p class="card-name">Uxmal Plus</p>
-          </div>
-        </div>
-        <div class="card-tabs">
-          <button class="card-tab active" onclick="switchCard(this,'ux-precio')">💰 Precio</button>
-          <button class="card-tab" onclick="switchCard(this,'ux-itinerario')">🗺 Itinerario</button>
-          <button class="card-tab" onclick="switchCard(this,'ux-incluye')">✅ Incluye</button>
-        </div>
-        <div class="card-pane active" id="ux-precio">
-          <div class="price-row"><span class="price-label">Precio original / persona</span><span
-              class="price-value original">$1,175</span></div>
-          <div class="price-row"><span class="price-label">Con descuento <span
-                class="discount-chip">−20%</span></span><span class="price-value discounted">$940</span></div>
-          <div class="total-box">
-            <div class="total-item full">
-              <p class="lbl">Total 8 personas</p>
-              <p class="val big">$7,520</p>
-            </div>
-            <div class="total-item">
-              <p class="lbl">Anticipo</p>
-              <p class="val">$4,000</p>
-            </div>
-            <div class="total-item">
-              <p class="lbl">Saldo restante</p>
-              <p class="val">$3,520</p>
-            </div>
-          </div>
-        </div>
-        <div class="card-pane" id="ux-itinerario">
-          <ul class="itinerary">
-            <li><span class="it-time">08:00 am</span><span class="it-place"><strong>Salida desde Mérida</strong></span>
-            </li>
-            <li><span class="it-time">10:00–12:00</span><span class="it-place"><strong>Uxmal</strong> Zona arqueológica
-                maya (2 hrs)</span></li>
-            <li><span class="it-time">12:20–01:20</span><span class="it-place"><strong>Kabah</strong> Zona arqueológica
-                (1 hr)</span></li>
-            <li><span class="it-time">01:40–02:40</span><span class="it-place"><strong>Restaurante Halach
-                  Huinic</strong> Comida típica regional (1 hr)</span></li>
-            <li><span class="it-time">02:45–04:15</span><span class="it-place"><strong>Choco Story</strong> Museo
-                interactivo del cacao maya (1.5 hrs)</span></li>
-            <li><span class="it-time">05:15–05:45</span><span class="it-place"><strong>Regreso a Mérida</strong></span>
-            </li>
-          </ul>
-        </div>
-        <div class="card-pane" id="ux-incluye">
-          <div class="inc-cols">
-            <div>
-              <p class="inc-sub">✅ Incluye</p>
-              <ul class="inc-list">
-                <li><span class="check">✓</span>Transporte moderno A/C</li>
-                <li><span class="check">✓</span>Guía certificado</li>
-                <li><span class="check">✓</span>Entrada Choco Story</li>
-                <li><span class="check">✓</span>Comida típica (entrada + plato fuerte + postre)</li>
-                <li><span class="check">✓</span>Nevera con hielo</li>
-              </ul>
-            </div>
-            <div>
-              <p class="inc-sub">❌ No incluye</p>
-              <ul class="no-inc-list">
-                <li><span class="cross">✗</span>Entrada Uxmal: MX $275 / Ext $604</li>
-                <li><span class="cross">✗</span>Entrada Kabah: MX $85 / Ext $155</li>
-              </ul>
-              <p style="font-size:11px;color:var(--muted);margin-top:8px;line-height:1.5;">Gratis con credencial
-                maestro, estudiante, 3ª edad o menores de 12. Domingo gratis para mexicanos.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div><!-- /grid -->
-
-    <!-- Resumen Celestún -->
-    <div class="summary-wrap" id="summary-celestun">
-      <div class="summary-card">
-        <div class="summary-grid">
-          <div class="sum-item">
-            <p class="lbl">Opción martes</p>
-            <p class="val" style="font-size:1.1rem">🦩 Celestún Plus</p>
-          </div>
-          <div class="sum-item">
-            <p class="lbl">Total 4 días</p>
-            <p class="val highlight">$32,160</p>
-          </div>
-          <div class="sum-item">
-            <p class="lbl">Total P/P</p>
-            <p class="val highlight">$4,020</p>
-          </div>
-          <div class="sum-item">
-            <p class="lbl">Total anticipos</p>
-            <p class="val">$16,000</p>
-          </div>
-          <div class="sum-item">
-            <p class="lbl">Saldo total</p>
-            <p class="val">$16,160</p>
-          </div>
-        </div>
-        <p class="note">
-          <strong>Anticipo:</strong> $500 MXN por persona por día de tour · el saldo se liquida en efectivo al abordar o
-          un día antes por transferencia.<br>
-          <strong>Formas de pago:</strong> Transferencia bancaria · Depósito BBVA · Tarjeta en línea · Efectivo en
-          oficina.<br>
-          <strong>Descuento del 20%</strong> aplica solo en modalidad grupal. Para modalidad privada consultar con
-          Elizabeth Denis.<br>
-          <strong>Grupos reducidos</strong> de hasta 19 personas · Camionetas modernas con A/C · Guías certificados
-          locales.
-        </p>
-      </div>
-    </div>
-  </div><!-- /panel-celestun -->
-
-
-  <!-- ===== OPCIÓN B: COLORADAS ===== -->
-  <div class="option-panel" id="panel-coloradas">
-    <div class="grid">
-
-      <!-- LUNES: CHICHÉN ITZÁ (mismo) -->
-      <div class="card">
-        <div class="card-top">
-          <div class="card-icon">👒</div>
-          <div>
-            <p class="card-day">Lunes · 19 Oct 2026</p>
-            <p class="card-name">Chichén Itzá Premium</p>
-          </div>
-        </div>
-        <div class="card-tabs">
-          <button class="card-tab active" onclick="switchCard(this,'ci2-precio')">💰 Precio</button>
-          <button class="card-tab" onclick="switchCard(this,'ci2-itinerario')">🗺 Itinerario</button>
-          <button class="card-tab" onclick="switchCard(this,'ci2-incluye')">✅ Incluye</button>
-        </div>
-        <div class="card-pane active" id="ci2-precio">
-          <div class="price-row"><span class="price-label">Precio original / persona</span><span
-              class="price-value original">$1,150</span></div>
-          <div class="price-row"><span class="price-label">Con descuento <span
-                class="discount-chip">−20%</span></span><span class="price-value discounted">$920</span></div>
-          <div class="total-box">
-            <div class="total-item full">
-              <p class="lbl">Total 8 personas</p>
-              <p class="val big">$7,360</p>
-            </div>
-            <div class="total-item">
-              <p class="lbl">Anticipo</p>
-              <p class="val">$4,000</p>
-            </div>
-            <div class="total-item">
-              <p class="lbl">Saldo restante</p>
-              <p class="val">$3,360</p>
-            </div>
-          </div>
-        </div>
-        <div class="card-pane" id="ci2-itinerario">
-          <ul class="itinerary">
-            <li><span class="it-time">07:00 am</span><span class="it-place"><strong>Salida desde Mérida</strong></span>
-            </li>
-            <li><span class="it-time">09:30–12:00</span><span class="it-place"><strong>Chichén Itzá</strong> Zona
-                arqueológica (2.5 hrs)</span></li>
-            <li><span class="it-time">12:15–01:45</span><span class="it-place"><strong>Cenote Ik Kil</strong> Nadar (1.5
-                hrs)</span></li>
-            <li><span class="it-time">02:00–03:00</span><span class="it-place"><strong>Restaurante Xaybe'h de
-                  Cámara</strong> Buffet (1 hr)</span></li>
-            <li><span class="it-time">04:00–05:30</span><span class="it-place"><strong>Izamal</strong> Pueblo Mágico
-                (1.5 hrs)</span></li>
-            <li><span class="it-time">06:30–07:00</span><span class="it-place"><strong>Regreso a Mérida</strong></span>
-            </li>
-          </ul>
-        </div>
-        <div class="card-pane" id="ci2-incluye">
-          <div class="inc-cols">
-            <div>
-              <p class="inc-sub">✅ Incluye</p>
-              <ul class="inc-list">
-                <li><span class="check">✓</span>Transporte moderno A/C</li>
-                <li><span class="check">✓</span>Guía certificado</li>
-                <li><span class="check">✓</span>Entrada Cenote Ik Kil</li>
-                <li><span class="check">✓</span>Chaleco + Locker</li>
-                <li><span class="check">✓</span>Buffet + agua fresca</li>
-                <li><span class="check">✓</span>Nevera con hielo</li>
-              </ul>
-            </div>
-            <div>
-              <p class="inc-sub">❌ No incluye</p>
-              <ul class="no-inc-list">
-                <li><span class="cross">✗</span>Entrada zona arqueológica:<br>MX $310 / Ext $697</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- MARTES: COLORADAS -->
-      <div class="card">
-        <div class="card-top">
-          <div class="card-icon">🐊</div>
-          <div>
-            <p class="card-day">Martes · 21 Oct 2026</p>
-            <p class="card-name">Coloradas Plus</p>
-          </div>
-        </div>
-        <div class="card-tabs">
-          <button class="card-tab active" onclick="switchCard(this,'col-precio')">💰 Precio</button>
-          <button class="card-tab" onclick="switchCard(this,'col-itinerario')">🗺 Itinerario</button>
-          <button class="card-tab" onclick="switchCard(this,'col-incluye')">✅ Incluye</button>
-        </div>
-        <div class="card-pane active" id="col-precio">
-          <div class="price-row"><span class="price-label">Precio original / persona</span><span
-              class="price-value original">$1,685</span></div>
-          <div class="price-row"><span class="price-label">Con descuento <span
-                class="discount-chip">−20%</span></span><span class="price-value discounted">$1,348</span></div>
-          <div class="total-box">
-            <div class="total-item full">
-              <p class="lbl">Total 8 personas</p>
-              <p class="val big">$10,784</p>
-            </div>
-            <div class="total-item">
-              <p class="lbl">Anticipo</p>
-              <p class="val">$4,000</p>
-            </div>
-            <div class="total-item">
-              <p class="lbl">Saldo restante</p>
-              <p class="val">$6,784</p>
-            </div>
-          </div>
-        </div>
-        <div class="card-pane" id="col-itinerario">
-          <ul class="itinerary">
-            <li><span class="it-time">07:00 am</span><span class="it-place"><strong>Salida desde Mérida</strong></span>
-            </li>
-            <li><span class="it-time">10:45–12:15</span><span class="it-place"><strong>Las Coloradas</strong> Lagunas
-                rosadas de la industria salinera (1.5 hrs)</span></li>
-            <li><span class="it-time">12:25–01:10</span><span class="it-place"><strong>Playa Cancunito</strong> Playa
-                virgen Platino (45 min)</span></li>
-            <li><span class="it-time">01:30–03:30</span><span class="it-place"><strong>Recorrido en lancha – Río
-                  Lagartos</strong> Flamencos y manglares (2 hrs)</span></li>
-            <li><span class="it-time">03:30–05:00</span><span class="it-place"><strong>Restaurante Maleconcito</strong>
-                Comida gourmet (1.5 hrs)</span></li>
-            <li><span class="it-time">07:30–08:30</span><span class="it-place"><strong>Regreso a Mérida</strong></span>
-            </li>
-          </ul>
-        </div>
-        <div class="card-pane" id="col-incluye">
-          <div class="inc-cols">
-            <div>
-              <p class="inc-sub">✅ Incluye</p>
-              <ul class="inc-list">
-                <li><span class="check">✓</span>Transporte moderno A/C</li>
-                <li><span class="check">✓</span>Guía certificado</li>
-                <li><span class="check">✓</span>Entrada Las Coloradas</li>
-                <li><span class="check">✓</span>Recorrido en lancha</li>
-                <li><span class="check">✓</span>Binoculares p/ aves</li>
-                <li><span class="check">✓</span>Baño Maya con barro blanco</li>
-                <li><span class="check">✓</span>Comida (1 platillo)</li>
-                <li><span class="check">✓</span>Uso instalaciones rest.</li>
-                <li><span class="check">✓</span>Nevera con hielo</li>
-              </ul>
-            </div>
-            <div>
-              <p class="inc-sub">❌ No incluye</p>
-              <ul class="no-inc-list">
-                <li><span class="cross">✗</span>Bebidas en restaurante</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- MIÉRCOLES: 4 CENOTES -->
-      <div class="card">
-        <div class="card-top">
-          <div class="card-icon">🥽</div>
-          <div>
-            <p class="card-day">Miércoles · 22 Oct 2026</p>
-            <p class="card-name">4 Cenotes Plus</p>
-          </div>
-        </div>
-        <div class="card-tabs">
-          <button class="card-tab active" onclick="switchCard(this,'cn2-precio')">💰 Precio</button>
-          <button class="card-tab" onclick="switchCard(this,'cn2-itinerario')">🗺 Itinerario</button>
-          <button class="card-tab" onclick="switchCard(this,'cn2-incluye')">✅ Incluye</button>
-        </div>
-        <div class="card-pane active" id="cn2-precio">
-          <div class="price-row"><span class="price-label">Precio original / persona</span><span
-              class="price-value original">$1,225</span></div>
-          <div class="price-row"><span class="price-label">Con descuento <span
-                class="discount-chip">−20%</span></span><span class="price-value discounted">$980</span></div>
-          <div class="total-box">
-            <div class="total-item full">
-              <p class="lbl">Total 8 personas</p>
-              <p class="val big">$7,840</p>
-            </div>
-            <div class="total-item">
-              <p class="lbl">Anticipo</p>
-              <p class="val">$4,000</p>
-            </div>
-            <div class="total-item">
-              <p class="lbl">Saldo restante</p>
-              <p class="val">$3,840</p>
-            </div>
-          </div>
-        </div>
-        <div class="card-pane" id="cn2-itinerario">
-          <ul class="itinerary">
-            <li><span class="it-time">08:00 am</span><span class="it-place"><strong>Salida desde Mérida</strong></span>
-            </li>
-            <li><span class="it-time">09:45–11:45</span><span class="it-place"><strong>Cenotes Santa Rosa</strong>
-                Cenote abierto Yuum Kimil + caverna Santa Rosa (2 hrs)</span></li>
-            <li><span class="it-time">12:00–01:00</span><span class="it-place"><strong>Cenote Pool Uinic</strong>
-                Caverna aguas cristalinas (1 hr)</span></li>
-            <li><span class="it-time">01:15–03:45</span><span class="it-place"><strong>Cenote & Rest. San
-                  Antonio</strong> Nado + comida típica (2.5 hrs)</span></li>
-            <li><span class="it-time">04:45–05:15</span><span class="it-place"><strong>Regreso a Mérida</strong></span>
-            </li>
-          </ul>
-        </div>
-        <div class="card-pane" id="cn2-incluye">
-          <div class="inc-cols">
-            <div>
-              <p class="inc-sub">✅ Incluye</p>
-              <ul class="inc-list">
-                <li><span class="check">✓</span>Transporte moderno A/C</li>
-                <li><span class="check">✓</span>Guía certificado</li>
-                <li><span class="check">✓</span>Entradas a cenotes</li>
-                <li><span class="check">✓</span>Chaleco salvavidas</li>
-                <li><span class="check">✓</span>Mascarilla de snorkel</li>
-                <li><span class="check">✓</span>Comida típica regional</li>
-                <li><span class="check">✓</span>Nevera con hielo</li>
-              </ul>
-            </div>
-            <div>
-              <p class="inc-sub">❌ No incluye</p>
-              <ul class="no-inc-list">
-                <li><span class="cross">✗</span>Bebidas en restaurante</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- JUEVES: UXMAL -->
-      <div class="card">
-        <div class="card-top">
-          <div class="card-icon">🍫</div>
-          <div>
-            <p class="card-day">Jueves · 23 Oct 2026</p>
-            <p class="card-name">Uxmal Plus</p>
-          </div>
-        </div>
-        <div class="card-tabs">
-          <button class="card-tab active" onclick="switchCard(this,'ux2-precio')">💰 Precio</button>
-          <button class="card-tab" onclick="switchCard(this,'ux2-itinerario')">🗺 Itinerario</button>
-          <button class="card-tab" onclick="switchCard(this,'ux2-incluye')">✅ Incluye</button>
-        </div>
-        <div class="card-pane active" id="ux2-precio">
-          <div class="price-row"><span class="price-label">Precio original / persona</span><span
-              class="price-value original">$1,175</span></div>
-          <div class="price-row"><span class="price-label">Con descuento <span
-                class="discount-chip">−20%</span></span><span class="price-value discounted">$940</span></div>
-          <div class="total-box">
-            <div class="total-item full">
-              <p class="lbl">Total 8 personas</p>
-              <p class="val big">$7,520</p>
-            </div>
-            <div class="total-item">
-              <p class="lbl">Anticipo</p>
-              <p class="val">$4,000</p>
-            </div>
-            <div class="total-item">
-              <p class="lbl">Saldo restante</p>
-              <p class="val">$3,520</p>
-            </div>
-          </div>
-        </div>
-        <div class="card-pane" id="ux2-itinerario">
-          <ul class="itinerary">
-            <li><span class="it-time">08:00 am</span><span class="it-place"><strong>Salida desde Mérida</strong></span>
-            </li>
-            <li><span class="it-time">10:00–12:00</span><span class="it-place"><strong>Uxmal</strong> Zona arqueológica
-                (2 hrs)</span></li>
-            <li><span class="it-time">12:20–01:20</span><span class="it-place"><strong>Kabah</strong> Zona arqueológica
-                (1 hr)</span></li>
-            <li><span class="it-time">01:40–02:40</span><span class="it-place"><strong>Restaurante Halach
-                  Huinic</strong> Comida típica (1 hr)</span></li>
-            <li><span class="it-time">02:45–04:15</span><span class="it-place"><strong>Choco Story</strong> Museo del
-                cacao (1.5 hrs)</span></li>
-            <li><span class="it-time">05:15–05:45</span><span class="it-place"><strong>Regreso a Mérida</strong></span>
-            </li>
-          </ul>
-        </div>
-        <div class="card-pane" id="ux2-incluye">
-          <div class="inc-cols">
-            <div>
-              <p class="inc-sub">✅ Incluye</p>
-              <ul class="inc-list">
-                <li><span class="check">✓</span>Transporte moderno A/C</li>
-                <li><span class="check">✓</span>Guía certificado</li>
-                <li><span class="check">✓</span>Entrada Choco Story</li>
-                <li><span class="check">✓</span>Comida típica completa</li>
-                <li><span class="check">✓</span>Nevera con hielo</li>
-              </ul>
-            </div>
-            <div>
-              <p class="inc-sub">❌ No incluye</p>
-              <ul class="no-inc-list">
-                <li><span class="cross">✗</span>Entrada Uxmal: MX $275 / Ext $604</li>
-                <li><span class="cross">✗</span>Entrada Kabah: MX $85 / Ext $155</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div><!-- /grid -->
-
-    <!-- Resumen Coloradas -->
-    <div class="summary-wrap">
-      <div class="summary-card">
-        <div class="summary-grid">
-          <div class="sum-item">
-            <p class="lbl">Opción martes</p>
-            <p class="val" style="font-size:1.1rem">🐊 Coloradas Plus</p>
-          </div>
-          <div class="sum-item">
-            <p class="lbl">Total 4 días</p>
-            <p class="val highlight">$33,504</p>
-          </div>
-          <div class="sum-item">
-            <p class="lbl">Total P/P</p>
-            <p class="val highlight">$4,188</p>
-          </div>
-          <div class="sum-item">
-            <p class="lbl">Total anticipos</p>
-            <p class="val">$16,000</p>
-          </div>
-          <div class="sum-item">
-            <p class="lbl">Saldo total</p>
-            <p class="val">$17,504</p>
-          </div>
-        </div>
-        <p class="note">
-          <strong>Anticipo:</strong> $500 MXN por persona por día de tour · el saldo se liquida en efectivo al abordar o
-          un día antes por transferencia.<br>
-          <strong>Formas de pago:</strong> Transferencia bancaria · Depósito BBVA · Tarjeta en línea · Efectivo en
-          oficina.<br>
-          <strong>Descuento del 20%</strong> aplica solo en modalidad grupal. Para modalidad privada consultar con
-          Elizabeth Denis.<br>
-          <strong>Grupos reducidos</strong> de hasta 19 personas · Camionetas modernas con A/C · Guías certificados
-          locales.
-        </p>
-      </div>
-    </div>
-  </div><!-- /panel-coloradas -->
-
-  <!-- ===== SECCIÓN PRIVADA ===== -->
-  <div style="background:var(--ink);margin-top:0;padding:56px 40px 64px;position:relative;overflow:hidden;"
-    id="seccion-privada">
-    <div
-      style="position:absolute;inset:0;background:url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.03\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/svg%3E');">
-    </div>
-    <div
-      style="position:absolute;bottom:-1px;left:0;right:0;height:44px;background:var(--cream);clip-path:ellipse(55% 100% at 50% 100%);">
-    </div>
-    <p
-      style="font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:500;margin-bottom:12px;position:relative;">
-      Modalidad Exclusiva · 8 Personas</p>
-    <h2
-      style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);color:#fff;line-height:1.2;position:relative;">
-      Tours <em style="font-style:italic;color:var(--clay)">Privados</em><br>Solo tu grupo</h2>
-    <div style="margin-top:20px;display:flex;gap:12px;flex-wrap:wrap;position:relative;">
-      <span class="badge" style="background:rgba(212,168,67,0.15);border-color:rgba(212,168,67,0.3);">🚐 <strong>Nissan
-          Urvan exclusiva</strong></span>
-      <span class="badge">👥 <strong>8–10 personas</strong></span>
-      <span class="badge">🗓 <strong>Fecha a definir · Oct 2026</strong></span>
-      <span class="badge">💳 <strong>Anticipo 50% para reservar</strong></span>
-    </div>
-  </div>
-
-  <p class="section-label">Selecciona el tour del martes en modalidad privada</p>
-  <h2 class="section-title">Tu itinerario <em style="font-style:italic;color:var(--clay)">exclusivo</em> para 4 días
-  </h2>
-
-  <!-- Diferenciador privado vs grupal -->
-  <div style="max-width:1100px;margin:0 auto 28px;padding:0 28px;">
-    <div
-      style="background:#fff;border:2px solid var(--gold);border-radius:16px;padding:18px 24px;display:flex;gap:16px;align-items:flex-start;">
-      <span style="font-size:1.6rem;flex-shrink:0;">⭐</span>
-      <div>
-        <p
-          style="font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--clay);margin-bottom:4px;">
-          ¿En qué se diferencia el tour privado?</p>
-        <p style="font-size:13px;color:var(--muted);line-height:1.65;">
-          Vehículo exclusivo solo para tu grupo · Sin descuento grupal pero sin extraños ·
-          Anticipo del <strong style="color:var(--ink)">50% del total</strong> (no $500/persona) ·
-          Saldo en efectivo al abordar o 1 día antes por transferencia ·
-          Precio por persona fijo sin importar cuántos sean entre 8 y 10.
-        </p>
-
-        <ul style="margin-top:12px;padding-left:18px;color:var(--muted);font-size:13px;line-height:1.7;">
-          <li>Servicio de recogida y regreso directamente en su hospedaje, sin necesidad de trasladarse a un punto de
-            encuentro.</li>
-          <li>Itinerario flexible, adaptado a sus tiempos, intereses y ritmo para disfrutar cada sitio con mayor
-            comodidad.</li>
-          <li>Experiencia completamente personalizada, con atención dedicada y mayor privacidad durante todo el
-            recorrido.</li>
+      <div class="card-pane" id="ci-itinerario">
+        <ul class="itinerary">
+          <li><span class="it-time">07:00 am</span><span class="it-place"><strong>Salida desde Mérida</strong></span></li>
+          <li><span class="it-time">09:30–12:00</span><span class="it-place"><strong>Chichén Itzá</strong> Zona arqueológica (2.5 hrs)</span></li>
+          <li><span class="it-time">12:15–01:45</span><span class="it-place"><strong>Cenote Ik Kil</strong> Aguas cristalinas, nadar (1.5 hrs)</span></li>
+          <li><span class="it-time">02:00–03:00</span><span class="it-place"><strong>Restaurante Xaybe'h de Cámara</strong> Buffet (1 hr)</span></li>
+          <li><span class="it-time">04:00–05:30</span><span class="it-place"><strong>Izamal</strong> Pueblo Mágico "la ciudad dorada" (1.5 hrs)</span></li>
+          <li><span class="it-time">06:30–07:00</span><span class="it-place"><strong>Regreso a Mérida</strong></span></li>
         </ul>
       </div>
-
+      <div class="card-pane" id="ci-incluye">
+        <div class="inc-cols">
+          <div>
+            <p class="inc-sub">✅ Incluye</p>
+            <ul class="inc-list">
+              <li><span class="check">✓</span>Transporte moderno A/C</li>
+              <li><span class="check">✓</span>Guía certificado</li>
+              <li><span class="check">✓</span>Entrada Cenote Ik Kil</li>
+              <li><span class="check">✓</span>Chaleco salvavidas</li>
+              <li><span class="check">✓</span>Locker en cenote</li>
+              <li><span class="check">✓</span>Buffet + agua fresca</li>
+              <li><span class="check">✓</span>Nevera con hielo</li>
+            </ul>
+          </div>
+          <div>
+            <p class="inc-sub">❌ No incluye</p>
+            <ul class="no-inc-list">
+              <li><span class="cross">✗</span>Entrada zona arqueológica:<br>MX $310 / Ext $697</li>
+            </ul>
+            <p style="font-size:11px;color:var(--muted);margin-top:10px;line-height:1.5;">Gratis con credencial vigente de maestro, estudiante, 3ª edad o menores de 12. Domingo gratis para mexicanos con ID oficial.</p>
+          </div>
+        </div>
+      </div>
     </div>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
-      <img src="images/img1.jpg" alt="Unidad Privada 1"
-        style="width: 100%; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
-      <img src="images/img2.jpg" alt="Unidad Privada 2"
-        style="width: 100%; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
-      <img src="images/img3.jpg" alt="Unidad Privada 3"
-        style="width: 100%; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+
+    <!-- MARTES: CELESTÚN -->
+    <div class="card">
+      <div class="card-top">
+        <div class="card-icon">🦩</div>
+        <div>
+          <p class="card-day">Martes · 21 Oct 2026</p>
+          <p class="card-name">Celestún Plus</p>
+        </div>
+      </div>
+      <div class="card-tabs">
+        <button class="card-tab active" onclick="switchCard(this,'cel-precio')">💰 Precio</button>
+        <button class="card-tab" onclick="switchCard(this,'cel-itinerario')">🗺 Itinerario</button>
+        <button class="card-tab" onclick="switchCard(this,'cel-incluye')">✅ Incluye</button>
+      </div>
+      <div class="card-pane active" id="cel-precio">
+        <div class="price-row"><span class="price-label">Precio original / persona</span><span class="price-value original">$1,475</span></div>
+        <div class="price-row"><span class="price-label">Con descuento <span class="discount-chip">−20%</span></span><span class="price-value discounted">$1,180</span></div>
+        <div class="total-box">
+          <div class="total-item full"><p class="lbl">Total 8 personas</p><p class="val big">$9,440</p></div>
+          <div class="total-item"><p class="lbl">Anticipo</p><p class="val">$4,000</p></div>
+          <div class="total-item"><p class="lbl">Saldo restante</p><p class="val">$5,440</p></div>
+        </div>
+      </div>
+      <div class="card-pane" id="cel-itinerario">
+        <ul class="itinerary">
+          <li><span class="it-time">08:00 am</span><span class="it-place"><strong>Salida desde Mérida</strong></span></li>
+          <li><span class="it-time">10:15–12:15</span><span class="it-place"><strong>Recorrido en lancha – Celestún</strong> Isla de pájaros, flamencos rosados, túnel de manglares, ojo de agua, baño maya con arcilla (1.5 hrs)</span></li>
+          <li><span class="it-time">12:30–03:30</span><span class="it-place"><strong>Restaurante Ramada de la Tía Candi</strong> Comida frente al mar + tiempo libre en playa (3 hrs)</span></li>
+          <li><span class="it-time">05:00–05:30</span><span class="it-place"><strong>Regreso a Mérida</strong></span></li>
+        </ul>
+      </div>
+      <div class="card-pane" id="cel-incluye">
+        <div class="inc-cols">
+          <div>
+            <p class="inc-sub">✅ Incluye</p>
+            <ul class="inc-list">
+              <li><span class="check">✓</span>Transporte moderno A/C</li>
+              <li><span class="check">✓</span>Guía certificado</li>
+              <li><span class="check">✓</span>Recorrido en lancha</li>
+              <li><span class="check">✓</span>Binoculares p/ aves</li>
+              <li><span class="check">✓</span>Comida (1 platillo)</li>
+              <li><span class="check">✓</span>Instalaciones restaurante</li>
+              <li><span class="check">✓</span>Nevera con hielo</li>
+            </ul>
+          </div>
+          <div>
+            <p class="inc-sub">❌ No incluye</p>
+            <ul class="no-inc-list">
+              <li><span class="cross">✗</span>Bebidas en restaurante</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MIÉRCOLES: 4 CENOTES -->
+    <div class="card">
+      <div class="card-top">
+        <div class="card-icon">🥽</div>
+        <div>
+          <p class="card-day">Miércoles · 22 Oct 2026</p>
+          <p class="card-name">4 Cenotes Plus</p>
+        </div>
+      </div>
+      <div class="card-tabs">
+        <button class="card-tab active" onclick="switchCard(this,'cn-precio')">💰 Precio</button>
+        <button class="card-tab" onclick="switchCard(this,'cn-itinerario')">🗺 Itinerario</button>
+        <button class="card-tab" onclick="switchCard(this,'cn-incluye')">✅ Incluye</button>
+      </div>
+      <div class="card-pane active" id="cn-precio">
+        <div class="price-row"><span class="price-label">Precio original / persona</span><span class="price-value original">$1,225</span></div>
+        <div class="price-row"><span class="price-label">Con descuento <span class="discount-chip">−20%</span></span><span class="price-value discounted">$980</span></div>
+        <div class="total-box">
+          <div class="total-item full"><p class="lbl">Total 8 personas</p><p class="val big">$7,840</p></div>
+          <div class="total-item"><p class="lbl">Anticipo</p><p class="val">$4,000</p></div>
+          <div class="total-item"><p class="lbl">Saldo restante</p><p class="val">$3,840</p></div>
+        </div>
+      </div>
+      <div class="card-pane" id="cn-itinerario">
+        <ul class="itinerary">
+          <li><span class="it-time">08:00 am</span><span class="it-place"><strong>Salida desde Mérida</strong></span></li>
+          <li><span class="it-time">09:45–11:45</span><span class="it-place"><strong>Cenotes Santa Rosa</strong> Cenote abierto Yuum Kimil + caverna Santa Rosa (2 hrs)</span></li>
+          <li><span class="it-time">12:00–01:00</span><span class="it-place"><strong>Cenote Pool Uinic</strong> Caverna con aguas cristalinas (1 hr)</span></li>
+          <li><span class="it-time">01:15–03:45</span><span class="it-place"><strong>Cenote & Rest. San Antonio</strong> Nado en cenote caverna + comida típica (2.5 hrs)</span></li>
+          <li><span class="it-time">04:45–05:15</span><span class="it-place"><strong>Regreso a Mérida</strong></span></li>
+        </ul>
+      </div>
+      <div class="card-pane" id="cn-incluye">
+        <div class="inc-cols">
+          <div>
+            <p class="inc-sub">✅ Incluye</p>
+            <ul class="inc-list">
+              <li><span class="check">✓</span>Transporte moderno A/C</li>
+              <li><span class="check">✓</span>Guía certificado</li>
+              <li><span class="check">✓</span>Entradas a cenotes</li>
+              <li><span class="check">✓</span>Chaleco salvavidas</li>
+              <li><span class="check">✓</span>Mascarilla de snorkel</li>
+              <li><span class="check">✓</span>Comida típica regional</li>
+              <li><span class="check">✓</span>Nevera con hielo</li>
+            </ul>
+          </div>
+          <div>
+            <p class="inc-sub">❌ No incluye</p>
+            <ul class="no-inc-list">
+              <li><span class="cross">✗</span>Bebidas en restaurante</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JUEVES: UXMAL -->
+    <div class="card">
+      <div class="card-top">
+        <div class="card-icon">🍫</div>
+        <div>
+          <p class="card-day">Jueves · 23 Oct 2026</p>
+          <p class="card-name">Uxmal Plus</p>
+        </div>
+      </div>
+      <div class="card-tabs">
+        <button class="card-tab active" onclick="switchCard(this,'ux-precio')">💰 Precio</button>
+        <button class="card-tab" onclick="switchCard(this,'ux-itinerario')">🗺 Itinerario</button>
+        <button class="card-tab" onclick="switchCard(this,'ux-incluye')">✅ Incluye</button>
+      </div>
+      <div class="card-pane active" id="ux-precio">
+        <div class="price-row"><span class="price-label">Precio original / persona</span><span class="price-value original">$1,175</span></div>
+        <div class="price-row"><span class="price-label">Con descuento <span class="discount-chip">−20%</span></span><span class="price-value discounted">$940</span></div>
+        <div class="total-box">
+          <div class="total-item full"><p class="lbl">Total 8 personas</p><p class="val big">$7,520</p></div>
+          <div class="total-item"><p class="lbl">Anticipo</p><p class="val">$4,000</p></div>
+          <div class="total-item"><p class="lbl">Saldo restante</p><p class="val">$3,520</p></div>
+        </div>
+      </div>
+      <div class="card-pane" id="ux-itinerario">
+        <ul class="itinerary">
+          <li><span class="it-time">08:00 am</span><span class="it-place"><strong>Salida desde Mérida</strong></span></li>
+          <li><span class="it-time">10:00–12:00</span><span class="it-place"><strong>Uxmal</strong> Zona arqueológica maya (2 hrs)</span></li>
+          <li><span class="it-time">12:20–01:20</span><span class="it-place"><strong>Kabah</strong> Zona arqueológica (1 hr)</span></li>
+          <li><span class="it-time">01:40–02:40</span><span class="it-place"><strong>Restaurante Halach Huinic</strong> Comida típica regional (1 hr)</span></li>
+          <li><span class="it-time">02:45–04:15</span><span class="it-place"><strong>Choco Story</strong> Museo interactivo del cacao maya (1.5 hrs)</span></li>
+          <li><span class="it-time">05:15–05:45</span><span class="it-place"><strong>Regreso a Mérida</strong></span></li>
+        </ul>
+      </div>
+      <div class="card-pane" id="ux-incluye">
+        <div class="inc-cols">
+          <div>
+            <p class="inc-sub">✅ Incluye</p>
+            <ul class="inc-list">
+              <li><span class="check">✓</span>Transporte moderno A/C</li>
+              <li><span class="check">✓</span>Guía certificado</li>
+              <li><span class="check">✓</span>Entrada Choco Story</li>
+              <li><span class="check">✓</span>Comida típica (entrada + plato fuerte + postre)</li>
+              <li><span class="check">✓</span>Nevera con hielo</li>
+            </ul>
+          </div>
+          <div>
+            <p class="inc-sub">❌ No incluye</p>
+            <ul class="no-inc-list">
+              <li><span class="cross">✗</span>Entrada Uxmal: MX $275 / Ext $604</li>
+              <li><span class="cross">✗</span>Entrada Kabah: MX $85 / Ext $155</li>
+            </ul>
+            <p style="font-size:11px;color:var(--muted);margin-top:8px;line-height:1.5;">Gratis con credencial maestro, estudiante, 3ª edad o menores de 12. Domingo gratis para mexicanos.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /grid -->
+
+  <!-- Resumen Celestún -->
+  <div class="summary-wrap" id="summary-celestun">
+    <div class="summary-card">
+      <div class="summary-grid">
+        <div class="sum-item"><p class="lbl">Opción martes</p><p class="val" style="font-size:1.1rem">🦩 Celestún Plus</p></div>
+        <div class="sum-item"><p class="lbl">Total 4 días</p><p class="val highlight">$32,160</p></div>
+        <div class="sum-item"><p class="lbl">Total anticipos</p><p class="val">$16,000</p></div>
+        <div class="sum-item"><p class="lbl">Saldo total</p><p class="val">$16,160</p></div>
+      </div>
+      <p class="note">
+        <strong>Anticipo:</strong> $500 MXN por persona por día de tour · el saldo se liquida en efectivo al abordar o un día antes por transferencia.<br>
+        <strong>Formas de pago:</strong> Transferencia bancaria · Depósito BBVA · Tarjeta en línea · Efectivo en oficina.<br>
+        <strong>Descuento del 20%</strong> aplica solo en modalidad grupal. Para modalidad privada consultar con Elizabeth Denis.<br>
+        <strong>Grupos reducidos</strong> de hasta 19 personas · Camionetas modernas con A/C · Guías certificados locales.
+      </p>
     </div>
   </div>
+</div><!-- /panel-celestun -->
 
-  <!-- TABS PRIVADO -->
-  <div class="tabs-wrapper">
-    <button class="tab-btn active" id="ptab-celestun" onclick="switchPriv('pcele')">
-      <span>🦩</span> Opción A · Celestún
-    </button>
-    <button class="tab-btn" id="ptab-coloradas" onclick="switchPriv('pcolo')">
-      <span>🐊</span> Opción B · Coloradas
-    </button>
+
+<!-- ===== OPCIÓN B: COLORADAS ===== -->
+<div class="option-panel" id="panel-coloradas">
+  <div class="grid">
+
+    <!-- LUNES: CHICHÉN ITZÁ (mismo) -->
+    <div class="card">
+      <div class="card-top">
+        <div class="card-icon">👒</div>
+        <div>
+          <p class="card-day">Lunes · 19 Oct 2026</p>
+          <p class="card-name">Chichén Itzá Premium</p>
+        </div>
+      </div>
+      <div class="card-tabs">
+        <button class="card-tab active" onclick="switchCard(this,'ci2-precio')">💰 Precio</button>
+        <button class="card-tab" onclick="switchCard(this,'ci2-itinerario')">🗺 Itinerario</button>
+        <button class="card-tab" onclick="switchCard(this,'ci2-incluye')">✅ Incluye</button>
+      </div>
+      <div class="card-pane active" id="ci2-precio">
+        <div class="price-row"><span class="price-label">Precio original / persona</span><span class="price-value original">$1,150</span></div>
+        <div class="price-row"><span class="price-label">Con descuento <span class="discount-chip">−20%</span></span><span class="price-value discounted">$920</span></div>
+        <div class="total-box">
+          <div class="total-item full"><p class="lbl">Total 8 personas</p><p class="val big">$7,360</p></div>
+          <div class="total-item"><p class="lbl">Anticipo</p><p class="val">$4,000</p></div>
+          <div class="total-item"><p class="lbl">Saldo restante</p><p class="val">$3,360</p></div>
+        </div>
+      </div>
+      <div class="card-pane" id="ci2-itinerario">
+        <ul class="itinerary">
+          <li><span class="it-time">07:00 am</span><span class="it-place"><strong>Salida desde Mérida</strong></span></li>
+          <li><span class="it-time">09:30–12:00</span><span class="it-place"><strong>Chichén Itzá</strong> Zona arqueológica (2.5 hrs)</span></li>
+          <li><span class="it-time">12:15–01:45</span><span class="it-place"><strong>Cenote Ik Kil</strong> Nadar (1.5 hrs)</span></li>
+          <li><span class="it-time">02:00–03:00</span><span class="it-place"><strong>Restaurante Xaybe'h de Cámara</strong> Buffet (1 hr)</span></li>
+          <li><span class="it-time">04:00–05:30</span><span class="it-place"><strong>Izamal</strong> Pueblo Mágico (1.5 hrs)</span></li>
+          <li><span class="it-time">06:30–07:00</span><span class="it-place"><strong>Regreso a Mérida</strong></span></li>
+        </ul>
+      </div>
+      <div class="card-pane" id="ci2-incluye">
+        <div class="inc-cols">
+          <div>
+            <p class="inc-sub">✅ Incluye</p>
+            <ul class="inc-list">
+              <li><span class="check">✓</span>Transporte moderno A/C</li>
+              <li><span class="check">✓</span>Guía certificado</li>
+              <li><span class="check">✓</span>Entrada Cenote Ik Kil</li>
+              <li><span class="check">✓</span>Chaleco + Locker</li>
+              <li><span class="check">✓</span>Buffet + agua fresca</li>
+              <li><span class="check">✓</span>Nevera con hielo</li>
+            </ul>
+          </div>
+          <div>
+            <p class="inc-sub">❌ No incluye</p>
+            <ul class="no-inc-list">
+              <li><span class="cross">✗</span>Entrada zona arqueológica:<br>MX $310 / Ext $697</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MARTES: COLORADAS -->
+    <div class="card">
+      <div class="card-top">
+        <div class="card-icon">🐊</div>
+        <div>
+          <p class="card-day">Martes · 21 Oct 2026</p>
+          <p class="card-name">Coloradas Plus</p>
+        </div>
+      </div>
+      <div class="card-tabs">
+        <button class="card-tab active" onclick="switchCard(this,'col-precio')">💰 Precio</button>
+        <button class="card-tab" onclick="switchCard(this,'col-itinerario')">🗺 Itinerario</button>
+        <button class="card-tab" onclick="switchCard(this,'col-incluye')">✅ Incluye</button>
+      </div>
+      <div class="card-pane active" id="col-precio">
+        <div class="price-row"><span class="price-label">Precio original / persona</span><span class="price-value original">$1,685</span></div>
+        <div class="price-row"><span class="price-label">Con descuento <span class="discount-chip">−20%</span></span><span class="price-value discounted">$1,348</span></div>
+        <div class="total-box">
+          <div class="total-item full"><p class="lbl">Total 8 personas</p><p class="val big">$10,784</p></div>
+          <div class="total-item"><p class="lbl">Anticipo</p><p class="val">$4,000</p></div>
+          <div class="total-item"><p class="lbl">Saldo restante</p><p class="val">$6,784</p></div>
+        </div>
+      </div>
+      <div class="card-pane" id="col-itinerario">
+        <ul class="itinerary">
+          <li><span class="it-time">07:00 am</span><span class="it-place"><strong>Salida desde Mérida</strong></span></li>
+          <li><span class="it-time">10:45–12:15</span><span class="it-place"><strong>Las Coloradas</strong> Lagunas rosadas de la industria salinera (1.5 hrs)</span></li>
+          <li><span class="it-time">12:25–01:10</span><span class="it-place"><strong>Playa Cancunito</strong> Playa virgen Platino (45 min)</span></li>
+          <li><span class="it-time">01:30–03:30</span><span class="it-place"><strong>Recorrido en lancha – Río Lagartos</strong> Flamencos y manglares (2 hrs)</span></li>
+          <li><span class="it-time">03:30–05:00</span><span class="it-place"><strong>Restaurante Maleconcito</strong> Comida gourmet (1.5 hrs)</span></li>
+          <li><span class="it-time">07:30–08:30</span><span class="it-place"><strong>Regreso a Mérida</strong></span></li>
+        </ul>
+      </div>
+      <div class="card-pane" id="col-incluye">
+        <div class="inc-cols">
+          <div>
+            <p class="inc-sub">✅ Incluye</p>
+            <ul class="inc-list">
+              <li><span class="check">✓</span>Transporte moderno A/C</li>
+              <li><span class="check">✓</span>Guía certificado</li>
+              <li><span class="check">✓</span>Entrada Las Coloradas</li>
+              <li><span class="check">✓</span>Recorrido en lancha</li>
+              <li><span class="check">✓</span>Binoculares p/ aves</li>
+              <li><span class="check">✓</span>Baño Maya con barro blanco</li>
+              <li><span class="check">✓</span>Comida (1 platillo)</li>
+              <li><span class="check">✓</span>Uso instalaciones rest.</li>
+              <li><span class="check">✓</span>Nevera con hielo</li>
+            </ul>
+          </div>
+          <div>
+            <p class="inc-sub">❌ No incluye</p>
+            <ul class="no-inc-list">
+              <li><span class="cross">✗</span>Bebidas en restaurante</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MIÉRCOLES: 4 CENOTES -->
+    <div class="card">
+      <div class="card-top">
+        <div class="card-icon">🥽</div>
+        <div>
+          <p class="card-day">Miércoles · 22 Oct 2026</p>
+          <p class="card-name">4 Cenotes Plus</p>
+        </div>
+      </div>
+      <div class="card-tabs">
+        <button class="card-tab active" onclick="switchCard(this,'cn2-precio')">💰 Precio</button>
+        <button class="card-tab" onclick="switchCard(this,'cn2-itinerario')">🗺 Itinerario</button>
+        <button class="card-tab" onclick="switchCard(this,'cn2-incluye')">✅ Incluye</button>
+      </div>
+      <div class="card-pane active" id="cn2-precio">
+        <div class="price-row"><span class="price-label">Precio original / persona</span><span class="price-value original">$1,225</span></div>
+        <div class="price-row"><span class="price-label">Con descuento <span class="discount-chip">−20%</span></span><span class="price-value discounted">$980</span></div>
+        <div class="total-box">
+          <div class="total-item full"><p class="lbl">Total 8 personas</p><p class="val big">$7,840</p></div>
+          <div class="total-item"><p class="lbl">Anticipo</p><p class="val">$4,000</p></div>
+          <div class="total-item"><p class="lbl">Saldo restante</p><p class="val">$3,840</p></div>
+        </div>
+      </div>
+      <div class="card-pane" id="cn2-itinerario">
+        <ul class="itinerary">
+          <li><span class="it-time">08:00 am</span><span class="it-place"><strong>Salida desde Mérida</strong></span></li>
+          <li><span class="it-time">09:45–11:45</span><span class="it-place"><strong>Cenotes Santa Rosa</strong> Cenote abierto Yuum Kimil + caverna Santa Rosa (2 hrs)</span></li>
+          <li><span class="it-time">12:00–01:00</span><span class="it-place"><strong>Cenote Pool Uinic</strong> Caverna aguas cristalinas (1 hr)</span></li>
+          <li><span class="it-time">01:15–03:45</span><span class="it-place"><strong>Cenote & Rest. San Antonio</strong> Nado + comida típica (2.5 hrs)</span></li>
+          <li><span class="it-time">04:45–05:15</span><span class="it-place"><strong>Regreso a Mérida</strong></span></li>
+        </ul>
+      </div>
+      <div class="card-pane" id="cn2-incluye">
+        <div class="inc-cols">
+          <div>
+            <p class="inc-sub">✅ Incluye</p>
+            <ul class="inc-list">
+              <li><span class="check">✓</span>Transporte moderno A/C</li>
+              <li><span class="check">✓</span>Guía certificado</li>
+              <li><span class="check">✓</span>Entradas a cenotes</li>
+              <li><span class="check">✓</span>Chaleco salvavidas</li>
+              <li><span class="check">✓</span>Mascarilla de snorkel</li>
+              <li><span class="check">✓</span>Comida típica regional</li>
+              <li><span class="check">✓</span>Nevera con hielo</li>
+            </ul>
+          </div>
+          <div>
+            <p class="inc-sub">❌ No incluye</p>
+            <ul class="no-inc-list">
+              <li><span class="cross">✗</span>Bebidas en restaurante</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JUEVES: UXMAL -->
+    <div class="card">
+      <div class="card-top">
+        <div class="card-icon">🍫</div>
+        <div>
+          <p class="card-day">Jueves · 23 Oct 2026</p>
+          <p class="card-name">Uxmal Plus</p>
+        </div>
+      </div>
+      <div class="card-tabs">
+        <button class="card-tab active" onclick="switchCard(this,'ux2-precio')">💰 Precio</button>
+        <button class="card-tab" onclick="switchCard(this,'ux2-itinerario')">🗺 Itinerario</button>
+        <button class="card-tab" onclick="switchCard(this,'ux2-incluye')">✅ Incluye</button>
+      </div>
+      <div class="card-pane active" id="ux2-precio">
+        <div class="price-row"><span class="price-label">Precio original / persona</span><span class="price-value original">$1,175</span></div>
+        <div class="price-row"><span class="price-label">Con descuento <span class="discount-chip">−20%</span></span><span class="price-value discounted">$940</span></div>
+        <div class="total-box">
+          <div class="total-item full"><p class="lbl">Total 8 personas</p><p class="val big">$7,520</p></div>
+          <div class="total-item"><p class="lbl">Anticipo</p><p class="val">$4,000</p></div>
+          <div class="total-item"><p class="lbl">Saldo restante</p><p class="val">$3,520</p></div>
+        </div>
+      </div>
+      <div class="card-pane" id="ux2-itinerario">
+        <ul class="itinerary">
+          <li><span class="it-time">08:00 am</span><span class="it-place"><strong>Salida desde Mérida</strong></span></li>
+          <li><span class="it-time">10:00–12:00</span><span class="it-place"><strong>Uxmal</strong> Zona arqueológica (2 hrs)</span></li>
+          <li><span class="it-time">12:20–01:20</span><span class="it-place"><strong>Kabah</strong> Zona arqueológica (1 hr)</span></li>
+          <li><span class="it-time">01:40–02:40</span><span class="it-place"><strong>Restaurante Halach Huinic</strong> Comida típica (1 hr)</span></li>
+          <li><span class="it-time">02:45–04:15</span><span class="it-place"><strong>Choco Story</strong> Museo del cacao (1.5 hrs)</span></li>
+          <li><span class="it-time">05:15–05:45</span><span class="it-place"><strong>Regreso a Mérida</strong></span></li>
+        </ul>
+      </div>
+      <div class="card-pane" id="ux2-incluye">
+        <div class="inc-cols">
+          <div>
+            <p class="inc-sub">✅ Incluye</p>
+            <ul class="inc-list">
+              <li><span class="check">✓</span>Transporte moderno A/C</li>
+              <li><span class="check">✓</span>Guía certificado</li>
+              <li><span class="check">✓</span>Entrada Choco Story</li>
+              <li><span class="check">✓</span>Comida típica completa</li>
+              <li><span class="check">✓</span>Nevera con hielo</li>
+            </ul>
+          </div>
+          <div>
+            <p class="inc-sub">❌ No incluye</p>
+            <ul class="no-inc-list">
+              <li><span class="cross">✗</span>Entrada Uxmal: MX $275 / Ext $604</li>
+              <li><span class="cross">✗</span>Entrada Kabah: MX $85 / Ext $155</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /grid -->
+
+  <!-- Resumen Coloradas -->
+  <div class="summary-wrap">
+    <div class="summary-card">
+      <div class="summary-grid">
+        <div class="sum-item"><p class="lbl">Opción martes</p><p class="val" style="font-size:1.1rem">🐊 Coloradas Plus</p></div>
+        <div class="sum-item"><p class="lbl">Total 4 días</p><p class="val highlight">$33,504</p></div>
+        <div class="sum-item"><p class="lbl">Total anticipos</p><p class="val">$16,000</p></div>
+        <div class="sum-item"><p class="lbl">Saldo total</p><p class="val">$17,504</p></div>
+      </div>
+      <p class="note">
+        <strong>Anticipo:</strong> $500 MXN por persona por día de tour · el saldo se liquida en efectivo al abordar o un día antes por transferencia.<br>
+        <strong>Formas de pago:</strong> Transferencia bancaria · Depósito BBVA · Tarjeta en línea · Efectivo en oficina.<br>
+        <strong>Descuento del 20%</strong> aplica solo en modalidad grupal. Para modalidad privada consultar con Elizabeth Denis.<br>
+        <strong>Grupos reducidos</strong> de hasta 19 personas · Camionetas modernas con A/C · Guías certificados locales.
+      </p>
+    </div>
   </div>
+</div><!-- /panel-coloradas -->
 
-  <!-- OPCIÓN PRIVADA A: CELESTÚN -->
-  <div class="option-panel active" id="ppanel-pcele">
-    <div class="grid">
+<!-- ===== SECCIÓN PRIVADA ===== -->
+<div style="background:var(--ink);margin-top:0;padding:56px 40px 64px;position:relative;overflow:hidden;" id="seccion-privada">
+  <div style="position:absolute;inset:0;background:url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.03\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/svg%3E');"></div>
+  <div style="position:absolute;bottom:-1px;left:0;right:0;height:44px;background:var(--cream);clip-path:ellipse(55% 100% at 50% 100%);"></div>
+  <p style="font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:500;margin-bottom:12px;position:relative;">Modalidad Exclusiva · 8 Personas</p>
+  <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);color:#fff;line-height:1.2;position:relative;">Tours <em style="font-style:italic;color:var(--clay)">Privados</em><br>Solo tu grupo</h2>
+  <div style="margin-top:20px;display:flex;gap:12px;flex-wrap:wrap;position:relative;">
+    <span class="badge" style="background:rgba(212,168,67,0.15);border-color:rgba(212,168,67,0.3);">🚐 <strong>Nissan Urvan exclusiva</strong></span>
+    <span class="badge">👥 <strong>8–10 personas</strong></span>
+    <span class="badge">🗓 <strong>Fecha a definir · Oct 2026</strong></span>
+    <span class="badge">💳 <strong>Anticipo 50% para reservar</strong></span>
+  </div>
+</div>
 
-      <!-- LUNES PRIV: Chichén Itzá -->
-      <div class="card" style="border-top:3px solid var(--gold);">
-        <div class="card-top">
-          <div class="card-icon" style="background:#fef9ec;">👒</div>
+<p class="section-label">Selecciona el tour del martes en modalidad privada</p>
+<h2 class="section-title">Tu itinerario <em style="font-style:italic;color:var(--clay)">exclusivo</em> para 4 días</h2>
+
+<!-- Diferenciador privado vs grupal -->
+<div style="max-width:1100px;margin:0 auto 28px;padding:0 28px;">
+  <div style="background:#fff;border:2px solid var(--gold);border-radius:16px;padding:18px 24px;display:flex;gap:16px;align-items:flex-start;">
+    <span style="font-size:1.6rem;flex-shrink:0;">⭐</span>
+    <div>
+      <p style="font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--clay);margin-bottom:4px;">¿En qué se diferencia el tour privado?</p>
+      <p style="font-size:13px;color:var(--muted);line-height:1.65;">Vehículo exclusivo solo para tu grupo · Sin descuento grupal pero sin extraños · Anticipo del <strong style="color:var(--ink)">50% del total</strong> (no $500/persona) · Saldo en efectivo al abordar o 1 día antes por transferencia · Precio por persona fijo sin importar cuántos sean entre 8 y 10.</p>
+    </div>
+  </div>
+</div>
+
+<!-- TABS PRIVADO -->
+<div class="tabs-wrapper">
+  <button class="tab-btn active" id="ptab-celestun" onclick="switchPriv('pcele')">
+    <span>🦩</span> Opción A · Celestún
+  </button>
+  <button class="tab-btn" id="ptab-coloradas" onclick="switchPriv('pcolo')">
+    <span>🐊</span> Opción B · Coloradas
+  </button>
+</div>
+
+<!-- OPCIÓN PRIVADA A: CELESTÚN -->
+<div class="option-panel active" id="ppanel-pcele">
+  <div class="grid">
+
+    <!-- LUNES PRIV: Chichén Itzá -->
+    <div class="card" style="border-top:3px solid var(--gold);">
+      <div class="card-top">
+        <div class="card-icon" style="background:#fef9ec;">👒</div>
+        <div>
+          <p class="card-day">Lunes · 19 Oct 2026 · <span style="color:var(--gold);font-weight:700;">PRIVADO</span></p>
+          <p class="card-name">Chichén Itzá + Cenote Ik Kil + Izamal</p>
+        </div>
+      </div>
+      <div class="card-tabs">
+        <button class="card-tab active" onclick="switchCard(this,'pci-precio')">💰 Precio</button>
+        <button class="card-tab" onclick="switchCard(this,'pci-itinerario')">🗺 Itinerario</button>
+        <button class="card-tab" onclick="switchCard(this,'pci-incluye')">✅ Incluye</button>
+      </div>
+      <div class="card-pane active" id="pci-precio">
+        <div class="price-row"><span class="price-label">Precio / persona</span><span class="price-value discounted">$1,395</span></div>
+        <div class="price-row"><span class="price-label">Vehículo</span><span class="price-value" style="font-size:13px;">🚐 Nissan Urvan</span></div>
+        <div class="price-row"><span class="price-label">Duración</span><span class="price-value" style="font-size:13px;">⏱ 12 hrs</span></div>
+        <div class="total-box">
+          <div class="total-item full"><p class="lbl">Total 8 personas</p><p class="val big">$11,160</p></div>
+          <div class="total-item"><p class="lbl">Anticipo (50%)</p><p class="val">$5,580</p></div>
+          <div class="total-item"><p class="lbl">Saldo restante</p><p class="val">$5,580</p></div>
+        </div>
+        <p style="font-size:11px;color:var(--muted);margin-top:12px;line-height:1.6;">Precio válido para 8 a 10 personas. Si el número cambia, solicitar nueva cotización.</p>
+      </div>
+      <div class="card-pane" id="pci-itinerario">
+        <ul class="itinerary">
+          <li><span class="it-time">07:00 am</span><span class="it-place"><strong>Salida desde Mérida</strong></span></li>
+          <li><span class="it-time">09:30–12:00</span><span class="it-place"><strong>Chichén Itzá</strong> Zona arqueológica (2.5 hrs)</span></li>
+          <li><span class="it-time">12:15–01:45</span><span class="it-place"><strong>Cenote Ik Kil</strong> Nadar en sus aguas cristalinas (1.5 hrs)</span></li>
+          <li><span class="it-time">02:00–03:00</span><span class="it-place"><strong>Restaurante Xaybe'h de Cámara</strong> Buffet + 1 bebida p/persona (1 hr)</span></li>
+          <li><span class="it-time">04:00–05:30</span><span class="it-place"><strong>Izamal</strong> La ciudad dorada, Pueblo Mágico (1.5 hrs)</span></li>
+          <li><span class="it-time">~07:00 pm</span><span class="it-place"><strong>Regreso a Mérida</strong></span></li>
+        </ul>
+      </div>
+      <div class="card-pane" id="pci-incluye">
+        <div class="inc-cols">
           <div>
-            <p class="card-day">Lunes · 19 Oct 2026 · <span style="color:var(--gold);font-weight:700;">PRIVADO</span>
-            </p>
-            <p class="card-name">Chichén Itzá + Cenote Ik Kil + Izamal</p>
+            <p class="inc-sub">✅ Incluye</p>
+            <ul class="inc-list">
+              <li><span class="check">✓</span>Transporte exclusivo A/C</li>
+              <li><span class="check">✓</span>Chofer dedicado</li>
+              <li><span class="check">✓</span>Guía certificado</li>
+              <li><span class="check">✓</span>Buffet + 1 bebida</li>
+              <li><span class="check">✓</span>Entrada Cenote Ik Kil</li>
+              <li><span class="check">✓</span>Chaleco salvavidas</li>
+              <li><span class="check">✓</span>Peaje y estacionamiento</li>
+              <li><span class="check">✓</span>Nevera con hielo</li>
+            </ul>
           </div>
-        </div>
-        <div class="card-tabs">
-          <button class="card-tab active" onclick="switchCard(this,'pci-precio')">💰 Precio</button>
-          <button class="card-tab" onclick="switchCard(this,'pci-itinerario')">🗺 Itinerario</button>
-          <button class="card-tab" onclick="switchCard(this,'pci-incluye')">✅ Incluye</button>
-        </div>
-        <div class="card-pane active" id="pci-precio">
-          <div class="price-row"><span class="price-label">Precio / persona</span><span
-              class="price-value discounted">$1,395</span></div>
-          <div class="price-row"><span class="price-label">Vehículo</span><span class="price-value"
-              style="font-size:13px;">🚐 Nissan Urvan</span></div>
-          <div class="price-row"><span class="price-label">Duración</span><span class="price-value"
-              style="font-size:13px;">⏱ 12 hrs</span></div>
-          <div class="total-box">
-            <div class="total-item full">
-              <p class="lbl">Total 8 personas</p>
-              <p class="val big">$11,160</p>
-            </div>
-            <div class="total-item">
-              <p class="lbl">Anticipo (50%)</p>
-              <p class="val">$5,580</p>
-            </div>
-            <div class="total-item">
-              <p class="lbl">Saldo restante</p>
-              <p class="val">$5,580</p>
-            </div>
-          </div>
-          <p style="font-size:11px;color:var(--muted);margin-top:12px;line-height:1.6;">Precio válido para 8 a 10
-            personas. Si el número cambia, solicitar nueva cotización.</p>
-        </div>
-        <div class="card-pane" id="pci-itinerario">
-          <ul class="itinerary">
-            <li><span class="it-time">07:00 am</span><span class="it-place"><strong>Salida desde Mérida</strong></span>
-            </li>
-            <li><span class="it-time">09:30–12:00</span><span class="it-place"><strong>Chichén Itzá</strong> Zona
-                arqueológica (2.5 hrs)</span></li>
-            <li><span class="it-time">12:15–01:45</span><span class="it-place"><strong>Cenote Ik Kil</strong> Nadar en
-                sus aguas cristalinas (1.5 hrs)</span></li>
-            <li><span class="it-time">02:00–03:00</span><span class="it-place"><strong>Restaurante Xaybe'h de
-                  Cámara</strong> Buffet + 1 bebida p/persona (1 hr)</span></li>
-            <li><span class="it-time">04:00–05:30</span><span class="it-place"><strong>Izamal</strong> La ciudad dorada,
-                Pueblo Mágico (1.5 hrs)</span></li>
-            <li><span class="it-time">~07:00 pm</span><span class="it-place"><strong>Regreso a Mérida</strong></span>
-            </li>
-          </ul>
-        </div>
-        <div class="card-pane" id="pci-incluye">
-          <div class="inc-cols">
-            <div>
-              <p class="inc-sub">✅ Incluye</p>
-              <ul class="inc-list">
-                <li><span class="check">✓</span>Transporte exclusivo A/C</li>
-                <li><span class="check">✓</span>Chofer dedicado</li>
-                <li><span class="check">✓</span>Guía certificado</li>
-                <li><span class="check">✓</span>Buffet + 1 bebida</li>
-                <li><span class="check">✓</span>Entrada Cenote Ik Kil</li>
-                <li><span class="check">✓</span>Chaleco salvavidas</li>
-                <li><span class="check">✓</span>Peaje y estacionamiento</li>
-                <li><span class="check">✓</span>Nevera con hielo</li>
-              </ul>
-            </div>
-            <div>
-              <p class="inc-sub">❌ No incluye</p>
-              <ul class="no-inc-list">
-                <li><span class="cross">✗</span>Entrada Chichén Itzá:<br>MX $310 / Ext $695</li>
-              </ul>
-              <p style="font-size:11px;color:var(--muted);margin-top:8px;line-height:1.5;">Gratis domingos con INE ·
-                Gratis entre semana con credencial maestro/estudiante/3ª edad.</p>
-            </div>
+          <div>
+            <p class="inc-sub">❌ No incluye</p>
+            <ul class="no-inc-list">
+              <li><span class="cross">✗</span>Entrada Chichén Itzá:<br>MX $310 / Ext $695</li>
+            </ul>
+            <p style="font-size:11px;color:var(--muted);margin-top:8px;line-height:1.5;">Gratis domingos con INE · Gratis entre semana con credencial maestro/estudiante/3ª edad.</p>
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- MARTES PRIV: Celestún -->
-      <div class="card" style="border-top:3px solid var(--gold);">
-        <div class="card-top">
-          <div class="card-icon" style="background:#fef9ec;">🦩</div>
+    <!-- MARTES PRIV: Celestún -->
+    <div class="card" style="border-top:3px solid var(--gold);">
+      <div class="card-top">
+        <div class="card-icon" style="background:#fef9ec;">🦩</div>
+        <div>
+          <p class="card-day">Martes · 21 Oct 2026 · <span style="color:var(--gold);font-weight:700;">PRIVADO</span></p>
+          <p class="card-name">Celestún Plus</p>
+        </div>
+      </div>
+      <div class="card-tabs">
+        <button class="card-tab active" onclick="switchCard(this,'pcel-precio')">💰 Precio</button>
+        <button class="card-tab" onclick="switchCard(this,'pcel-itinerario')">🗺 Itinerario</button>
+        <button class="card-tab" onclick="switchCard(this,'pcel-incluye')">✅ Incluye</button>
+      </div>
+      <div class="card-pane active" id="pcel-precio">
+        <div class="price-row"><span class="price-label">Precio / persona</span><span class="price-value discounted">Ver Opción A</span></div>
+        <p style="font-size:12.5px;color:var(--muted);padding:12px 0;line-height:1.6;">El tour Celestún en modalidad privada no fue cotizado por separado. Consultar con Elizabeth Denis para precio individual de este día.</p>
+        <div class="total-box" style="background:var(--muted);">
+          <div class="total-item full"><p class="lbl">Solicitar cotización</p><p class="val" style="font-size:1rem;">Contactar a Elizabeth</p></div>
+        </div>
+      </div>
+      <div class="card-pane" id="pcel-itinerario">
+        <ul class="itinerary">
+          <li><span class="it-time">08:00 am</span><span class="it-place"><strong>Salida desde Mérida</strong></span></li>
+          <li><span class="it-time">10:15–12:15</span><span class="it-place"><strong>Recorrido en lancha</strong> Flamencos, manglares, baño maya con arcilla (1.5 hrs)</span></li>
+          <li><span class="it-time">12:30–03:30</span><span class="it-place"><strong>Rest. Ramada de la Tía Candi</strong> Comida frente al mar + tiempo libre playa (3 hrs)</span></li>
+          <li><span class="it-time">~05:30 pm</span><span class="it-place"><strong>Regreso a Mérida</strong></span></li>
+        </ul>
+      </div>
+      <div class="card-pane" id="pcel-incluye">
+        <p style="font-size:12px;color:var(--muted);padding:8px 0 12px;line-height:1.6;">Mismos incluye/no incluye que el tour grupal. Consultar precio privado con Elizabeth Denis.</p>
+        <ul class="inc-list">
+          <li><span class="check">✓</span>Transporte exclusivo A/C · Chofer · Guía</li>
+          <li><span class="check">✓</span>Recorrido en lancha · Binoculares</li>
+          <li><span class="check">✓</span>Comida (1 platillo) · Nevera</li>
+          <li><span class="cross" style="color:var(--red);">✗</span>Bebidas en restaurante</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- MIÉRCOLES PRIV: 4 Cenotes -->
+    <div class="card" style="border-top:3px solid var(--gold);">
+      <div class="card-top">
+        <div class="card-icon" style="background:#fef9ec;">🥽</div>
+        <div>
+          <p class="card-day">Miércoles · 22 Oct 2026 · <span style="color:var(--gold);font-weight:700;">PRIVADO</span></p>
+          <p class="card-name">4 Cenotes Plus</p>
+        </div>
+      </div>
+      <div class="card-tabs">
+        <button class="card-tab active" onclick="switchCard(this,'pcn-precio')">💰 Precio</button>
+        <button class="card-tab" onclick="switchCard(this,'pcn-itinerario')">🗺 Itinerario</button>
+        <button class="card-tab" onclick="switchCard(this,'pcn-incluye')">✅ Incluye</button>
+      </div>
+      <div class="card-pane active" id="pcn-precio">
+        <div class="price-row"><span class="price-label">Precio / persona</span><span class="price-value discounted">$1,515</span></div>
+        <div class="price-row"><span class="price-label">Vehículo</span><span class="price-value" style="font-size:13px;">🚐 Nissan Urvan</span></div>
+        <div class="price-row"><span class="price-label">Duración</span><span class="price-value" style="font-size:13px;">⏱ 9 hrs</span></div>
+        <div class="total-box">
+          <div class="total-item full"><p class="lbl">Total 8 personas</p><p class="val big">$12,120</p></div>
+          <div class="total-item"><p class="lbl">Anticipo (50%)</p><p class="val">$6,060</p></div>
+          <div class="total-item"><p class="lbl">Saldo restante</p><p class="val">$6,060</p></div>
+        </div>
+      </div>
+      <div class="card-pane" id="pcn-itinerario">
+        <ul class="itinerary">
+          <li><span class="it-time">08:00 am</span><span class="it-place"><strong>Salida desde Mérida</strong></span></li>
+          <li><span class="it-time">09:45–11:45</span><span class="it-place"><strong>Cenotes Santa Rosa</strong> Yuum Kimil (abierto) + Santa Rosa (caverna) (2 hrs)</span></li>
+          <li><span class="it-time">12:00–01:00</span><span class="it-place"><strong>Cenote Pool Uinic</strong> Caverna aguas cristalinas (1 hr)</span></li>
+          <li><span class="it-time">01:15–03:45</span><span class="it-place"><strong>Cenote & Rest. San Antonio</strong> Nado + comida a la carta (2.5 hrs)</span></li>
+          <li><span class="it-time">~05:00 pm</span><span class="it-place"><strong>Regreso a Mérida</strong></span></li>
+        </ul>
+      </div>
+      <div class="card-pane" id="pcn-incluye">
+        <div class="inc-cols">
           <div>
-            <p class="card-day">Martes · 21 Oct 2026 · <span style="color:var(--gold);font-weight:700;">PRIVADO</span>
-            </p>
-            <p class="card-name">Celestún Plus</p>
+            <p class="inc-sub">✅ Incluye</p>
+            <ul class="inc-list">
+              <li><span class="check">✓</span>Transporte exclusivo A/C</li>
+              <li><span class="check">✓</span>Chofer + Guía certificado</li>
+              <li><span class="check">✓</span>Entradas a los 4 cenotes</li>
+              <li><span class="check">✓</span>Chalecos salvavidas</li>
+              <li><span class="check">✓</span>Comida a la carta</li>
+              <li><span class="check">✓</span>Nevera con hielo</li>
+            </ul>
           </div>
-        </div>
-        <div class="card-tabs">
-          <button class="card-tab active" onclick="switchCard(this,'pcel-precio')">💰 Precio</button>
-          <button class="card-tab" onclick="switchCard(this,'pcel-itinerario')">🗺 Itinerario</button>
-          <button class="card-tab" onclick="switchCard(this,'pcel-incluye')">✅ Incluye</button>
-        </div>
-        <div class="card-pane active" id="pcel-precio">
-          <div class="price-row"><span class="price-label">Precio / persona</span><span
-              class="price-value discounted">$1,730</span></div>
-          <div class="price-row"><span class="price-label">Vehículo</span><span class="price-value"
-              style="font-size:13px;">🚐 Nissan Urvan</span></div>
-          <div class="price-row"><span class="price-label">Duración</span><span class="price-value"
-              style="font-size:13px;">⏱ 8 hrs</span></div>
-          <div class="total-box">
-            <div class="total-item full">
-              <p class="lbl">Total 8 personas</p>
-              <p class="val big">$13,840</p>
-            </div>
-            <div class="total-item">
-              <p class="lbl">Anticipo (50%)</p>
-              <p class="val">$6,920</p>
-            </div>
-            <div class="total-item">
-              <p class="lbl">Saldo restante</p>
-              <p class="val">$6,920</p>
-            </div>
-          </div>
-        </div>
-        <div class="card-pane" id="pcel-itinerario">
-          <ul class="itinerary">
-            <li><span class="it-time">08:00 am</span><span class="it-place"><strong>Salida desde Mérida</strong></span>
-            </li>
-            <li><span class="it-time">10:15–12:15</span><span class="it-place"><strong>Recorrido en lancha</strong>
-                Flamencos, manglares, baño maya con arcilla (1.5 hrs)</span></li>
-            <li><span class="it-time">12:30–03:30</span><span class="it-place"><strong>Rest. Ramada de la Tía
-                  Candi</strong> Comida frente al mar + tiempo libre playa (3 hrs)</span></li>
-            <li><span class="it-time">~05:30 pm</span><span class="it-place"><strong>Regreso a Mérida</strong></span>
-            </li>
-          </ul>
-        </div>
-        <div class="card-pane" id="pcel-incluye">
-          <div class="inc-cols">
-            <div>
-              <p class="inc-sub">✅ Incluye</p>
-              <ul class="inc-list">
-                <li><span class="check">✓</span>Transporte exclusivo A/C</li>
-                <li><span class="check">✓</span>Chofer + Guía certificado</li>
-                <li><span class="check">✓</span>Recorrido en lancha por la reserva natural.</li>
-                <li><span class="check">✓</span>Binoculares para el avistamiento de aves durante el paseo en lancha.</li>
-                <li><span class="check">✓</span>Comida a la carta en un restaurante a la orilla de la playa.</li>
-                <li><span class="check">✓</span>Nevera con hielo abordo del vehículo.</li>
-              </ul>
-            </div>
-            <div>
-              <p class="inc-sub">❌ No incluye</p>
-              <ul class="no-inc-list">
-                <li><span class="cross">✗</span>- Bebidas durante la comida</li>
-              </ul>
-            </div>
+          <div>
+            <p class="inc-sub">❌ No incluye</p>
+            <ul class="no-inc-list">
+              <li><span class="cross">✗</span>Bebidas en restaurante</li>
+            </ul>
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- MIÉRCOLES PRIV: 4 Cenotes -->
-      <div class="card" style="border-top:3px solid var(--gold);">
-        <div class="card-top">
-          <div class="card-icon" style="background:#fef9ec;">🥽</div>
+    <!-- JUEVES PRIV: Uxmal -->
+    <div class="card" style="border-top:3px solid var(--gold);">
+      <div class="card-top">
+        <div class="card-icon" style="background:#fef9ec;">🍫</div>
+        <div>
+          <p class="card-day">Jueves · 23 Oct 2026 · <span style="color:var(--gold);font-weight:700;">PRIVADO</span></p>
+          <p class="card-name">Uxmal + Kabah + Choco Story</p>
+        </div>
+      </div>
+      <div class="card-tabs">
+        <button class="card-tab active" onclick="switchCard(this,'pux-precio')">💰 Precio</button>
+        <button class="card-tab" onclick="switchCard(this,'pux-itinerario')">🗺 Itinerario</button>
+        <button class="card-tab" onclick="switchCard(this,'pux-incluye')">✅ Incluye</button>
+      </div>
+      <div class="card-pane active" id="pux-precio">
+        <div class="price-row"><span class="price-label">Precio / persona</span><span class="price-value discounted">$1,305</span></div>
+        <div class="price-row"><span class="price-label">Vehículo</span><span class="price-value" style="font-size:13px;">🚐 Nissan Urvan</span></div>
+        <div class="price-row"><span class="price-label">Duración</span><span class="price-value" style="font-size:13px;">⏱ 9 hrs</span></div>
+        <div class="total-box">
+          <div class="total-item full"><p class="lbl">Total 8 personas</p><p class="val big">$10,440</p></div>
+          <div class="total-item"><p class="lbl">Anticipo (50%)</p><p class="val">$5,220</p></div>
+          <div class="total-item"><p class="lbl">Saldo restante</p><p class="val">$5,220</p></div>
+        </div>
+      </div>
+      <div class="card-pane" id="pux-itinerario">
+        <ul class="itinerary">
+          <li><span class="it-time">08:00 am</span><span class="it-place"><strong>Salida desde Mérida</strong></span></li>
+          <li><span class="it-time">10:00–12:00</span><span class="it-place"><strong>Uxmal</strong> Zona arqueológica maya (2 hrs)</span></li>
+          <li><span class="it-time">12:20–01:20</span><span class="it-place"><strong>Kabah</strong> Zona arqueológica (1 hr)</span></li>
+          <li><span class="it-time">01:40–02:40</span><span class="it-place"><strong>Restaurante Halach Huinic</strong> Comida típica 3 tiempos (1 hr)</span></li>
+          <li><span class="it-time">02:45–04:15</span><span class="it-place"><strong>Choco Story</strong> Museo del cacao (1.5 hrs)</span></li>
+          <li><span class="it-time">~05:30 pm</span><span class="it-place"><strong>Regreso a Mérida</strong></span></li>
+        </ul>
+      </div>
+      <div class="card-pane" id="pux-incluye">
+        <div class="inc-cols">
           <div>
-            <p class="card-day">Miércoles · 22 Oct 2026 · <span
-                style="color:var(--gold);font-weight:700;">PRIVADO</span></p>
-            <p class="card-name">4 Cenotes Plus</p>
+            <p class="inc-sub">✅ Incluye</p>
+            <ul class="inc-list">
+              <li><span class="check">✓</span>Transporte exclusivo A/C</li>
+              <li><span class="check">✓</span>Chofer + Guía certificado</li>
+              <li><span class="check">✓</span>Comida típica 3 tiempos</li>
+              <li><span class="check">✓</span>Nevera con hielo</li>
+            </ul>
           </div>
-        </div>
-        <div class="card-tabs">
-          <button class="card-tab active" onclick="switchCard(this,'pcn-precio')">💰 Precio</button>
-          <button class="card-tab" onclick="switchCard(this,'pcn-itinerario')">🗺 Itinerario</button>
-          <button class="card-tab" onclick="switchCard(this,'pcn-incluye')">✅ Incluye</button>
-        </div>
-        <div class="card-pane active" id="pcn-precio">
-          <div class="price-row"><span class="price-label">Precio / persona</span><span
-              class="price-value discounted">$1,515</span></div>
-          <div class="price-row"><span class="price-label">Vehículo</span><span class="price-value"
-              style="font-size:13px;">🚐 Nissan Urvan</span></div>
-          <div class="price-row"><span class="price-label">Duración</span><span class="price-value"
-              style="font-size:13px;">⏱ 9 hrs</span></div>
-          <div class="total-box">
-            <div class="total-item full">
-              <p class="lbl">Total 8 personas</p>
-              <p class="val big">$12,120</p>
-            </div>
-            <div class="total-item">
-              <p class="lbl">Anticipo (50%)</p>
-              <p class="val">$6,060</p>
-            </div>
-            <div class="total-item">
-              <p class="lbl">Saldo restante</p>
-              <p class="val">$6,060</p>
-            </div>
-          </div>
-        </div>
-        <div class="card-pane" id="pcn-itinerario">
-          <ul class="itinerary">
-            <li><span class="it-time">08:00 am</span><span class="it-place"><strong>Salida desde Mérida</strong></span>
-            </li>
-            <li><span class="it-time">09:45–11:45</span><span class="it-place"><strong>Cenotes Santa Rosa</strong> Yuum
-                Kimil (abierto) + Santa Rosa (caverna) (2 hrs)</span></li>
-            <li><span class="it-time">12:00–01:00</span><span class="it-place"><strong>Cenote Pool Uinic</strong>
-                Caverna aguas cristalinas (1 hr)</span></li>
-            <li><span class="it-time">01:15–03:45</span><span class="it-place"><strong>Cenote & Rest. San
-                  Antonio</strong> Nado + comida a la carta (2.5 hrs)</span></li>
-            <li><span class="it-time">~05:00 pm</span><span class="it-place"><strong>Regreso a Mérida</strong></span>
-            </li>
-          </ul>
-        </div>
-        <div class="card-pane" id="pcn-incluye">
-          <div class="inc-cols">
-            <div>
-              <p class="inc-sub">✅ Incluye</p>
-              <ul class="inc-list">
-                <li><span class="check">✓</span>Transporte exclusivo A/C</li>
-                <li><span class="check">✓</span>Chofer + Guía certificado</li>
-                <li><span class="check">✓</span>Entradas a los 4 cenotes</li>
-                <li><span class="check">✓</span>Chalecos salvavidas</li>
-                <li><span class="check">✓</span>Comida a la carta</li>
-                <li><span class="check">✓</span>Nevera con hielo</li>
-              </ul>
-            </div>
-            <div>
-              <p class="inc-sub">❌ No incluye</p>
-              <ul class="no-inc-list">
-                <li><span class="cross">✗</span>Bebidas en restaurante</li>
-              </ul>
-            </div>
+          <div>
+            <p class="inc-sub">❌ No incluye</p>
+            <ul class="no-inc-list">
+              <li><span class="cross">✗</span>Bebidas en restaurante</li>
+              <li><span class="cross">✗</span>Uxmal: MX $275 / Ext $604</li>
+              <li><span class="cross">✗</span>Kabah: MX $85 / Ext $155</li>
+            </ul>
+            <p style="font-size:11px;color:var(--muted);margin-top:8px;line-height:1.5;">Menores de 12 años mexicanos: gratis. Menores extranjeros: $105.</p>
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- JUEVES PRIV: Uxmal -->
-      <div class="card" style="border-top:3px solid var(--gold);">
-        <div class="card-top">
-          <div class="card-icon" style="background:#fef9ec;">🍫</div>
+  </div><!-- /grid -->
+
+  <!-- Resumen privado Celestún -->
+  <div class="summary-wrap">
+    <div class="summary-card" style="border-color:var(--gold);border-width:2px;">
+      <div class="summary-grid">
+        <div class="sum-item"><p class="lbl">Modalidad</p><p class="val" style="font-size:1rem;">🔒 Tour Privado</p></div>
+        <div class="sum-item"><p class="lbl">Martes elegido</p><p class="val" style="font-size:1rem;">🦩 Celestún (consultar)</p></div>
+        <div class="sum-item"><p class="lbl">Total Lun+Mié+Jue</p><p class="val highlight">$33,720</p></div>
+        <div class="sum-item"><p class="lbl">Total anticipos (50%)</p><p class="val">$16,860</p></div>
+      </div>
+      <p class="note">
+        <strong>Nota:</strong> El total de Lun+Mié+Jue incluye Chichén Itzá ($11,160) + 4 Cenotes ($12,120) + Uxmal ($10,440). El tour de Celestún del martes requiere cotización privada adicional con Elizabeth Denis.<br>
+        <strong>Anticipo:</strong> 50% del total para confirmar reserva · Saldo en efectivo al abordar o 1 día antes por transferencia.<br>
+        <strong>Sin descuento grupal</strong> en modalidad privada · Vehículo exclusivo (Nissan Urvan) para tu grupo · Sin pasajeros externos.
+      </p>
+    </div>
+  </div>
+</div><!-- /ppanel-pcele -->
+
+<!-- OPCIÓN PRIVADA B: COLORADAS -->
+<div class="option-panel" id="ppanel-pcolo">
+  <div class="grid">
+
+    <!-- LUNES PRIV: Chichén (mismo) -->
+    <div class="card" style="border-top:3px solid var(--gold);">
+      <div class="card-top">
+        <div class="card-icon" style="background:#fef9ec;">👒</div>
+        <div>
+          <p class="card-day">Lunes · 19 Oct 2026 · <span style="color:var(--gold);font-weight:700;">PRIVADO</span></p>
+          <p class="card-name">Chichén Itzá + Cenote Ik Kil + Izamal</p>
+        </div>
+      </div>
+      <div class="card-tabs">
+        <button class="card-tab active" onclick="switchCard(this,'pci3-precio')">💰 Precio</button>
+        <button class="card-tab" onclick="switchCard(this,'pci3-itinerario')">🗺 Itinerario</button>
+        <button class="card-tab" onclick="switchCard(this,'pci3-incluye')">✅ Incluye</button>
+      </div>
+      <div class="card-pane active" id="pci3-precio">
+        <div class="price-row"><span class="price-label">Precio / persona</span><span class="price-value discounted">$1,395</span></div>
+        <div class="price-row"><span class="price-label">Vehículo</span><span class="price-value" style="font-size:13px;">🚐 Nissan Urvan</span></div>
+        <div class="price-row"><span class="price-label">Duración</span><span class="price-value" style="font-size:13px;">⏱ 12 hrs</span></div>
+        <div class="total-box">
+          <div class="total-item full"><p class="lbl">Total 8 personas</p><p class="val big">$11,160</p></div>
+          <div class="total-item"><p class="lbl">Anticipo (50%)</p><p class="val">$5,580</p></div>
+          <div class="total-item"><p class="lbl">Saldo restante</p><p class="val">$5,580</p></div>
+        </div>
+      </div>
+      <div class="card-pane" id="pci3-itinerario">
+        <ul class="itinerary">
+          <li><span class="it-time">07:00 am</span><span class="it-place"><strong>Salida desde Mérida</strong></span></li>
+          <li><span class="it-time">09:30–12:00</span><span class="it-place"><strong>Chichén Itzá</strong> Zona arqueológica (2.5 hrs)</span></li>
+          <li><span class="it-time">12:15–01:45</span><span class="it-place"><strong>Cenote Ik Kil</strong> Nadar (1.5 hrs)</span></li>
+          <li><span class="it-time">02:00–03:00</span><span class="it-place"><strong>Restaurante Xaybe'h</strong> Buffet + bebida (1 hr)</span></li>
+          <li><span class="it-time">04:00–05:30</span><span class="it-place"><strong>Izamal</strong> Pueblo Mágico (1.5 hrs)</span></li>
+          <li><span class="it-time">~07:00 pm</span><span class="it-place"><strong>Regreso a Mérida</strong></span></li>
+        </ul>
+      </div>
+      <div class="card-pane" id="pci3-incluye">
+        <div class="inc-cols">
           <div>
-            <p class="card-day">Jueves · 23 Oct 2026 · <span style="color:var(--gold);font-weight:700;">PRIVADO</span>
-            </p>
-            <p class="card-name">Uxmal + Kabah + Choco Story</p>
+            <p class="inc-sub">✅ Incluye</p>
+            <ul class="inc-list">
+              <li><span class="check">✓</span>Transporte exclusivo A/C</li>
+              <li><span class="check">✓</span>Chofer + Guía certificado</li>
+              <li><span class="check">✓</span>Buffet + 1 bebida</li>
+              <li><span class="check">✓</span>Entrada Cenote Ik Kil</li>
+              <li><span class="check">✓</span>Chaleco · Peajes · Nevera</li>
+            </ul>
           </div>
-        </div>
-        <div class="card-tabs">
-          <button class="card-tab active" onclick="switchCard(this,'pux-precio')">💰 Precio</button>
-          <button class="card-tab" onclick="switchCard(this,'pux-itinerario')">🗺 Itinerario</button>
-          <button class="card-tab" onclick="switchCard(this,'pux-incluye')">✅ Incluye</button>
-        </div>
-        <div class="card-pane active" id="pux-precio">
-          <div class="price-row"><span class="price-label">Precio / persona</span><span
-              class="price-value discounted">$1,305</span></div>
-          <div class="price-row"><span class="price-label">Vehículo</span><span class="price-value"
-              style="font-size:13px;">🚐 Nissan Urvan</span></div>
-          <div class="price-row"><span class="price-label">Duración</span><span class="price-value"
-              style="font-size:13px;">⏱ 9 hrs</span></div>
-          <div class="total-box">
-            <div class="total-item full">
-              <p class="lbl">Total 8 personas</p>
-              <p class="val big">$10,440</p>
-            </div>
-            <div class="total-item">
-              <p class="lbl">Anticipo (50%)</p>
-              <p class="val">$5,220</p>
-            </div>
-            <div class="total-item">
-              <p class="lbl">Saldo restante</p>
-              <p class="val">$5,220</p>
-            </div>
-          </div>
-        </div>
-        <div class="card-pane" id="pux-itinerario">
-          <ul class="itinerary">
-            <li><span class="it-time">08:00 am</span><span class="it-place"><strong>Salida desde Mérida</strong></span>
-            </li>
-            <li><span class="it-time">10:00–12:00</span><span class="it-place"><strong>Uxmal</strong> Zona arqueológica
-                maya (2 hrs)</span></li>
-            <li><span class="it-time">12:20–01:20</span><span class="it-place"><strong>Kabah</strong> Zona arqueológica
-                (1 hr)</span></li>
-            <li><span class="it-time">01:40–02:40</span><span class="it-place"><strong>Restaurante Halach
-                  Huinic</strong> Comida típica 3 tiempos (1 hr)</span></li>
-            <li><span class="it-time">02:45–04:15</span><span class="it-place"><strong>Choco Story</strong> Museo del
-                cacao (1.5 hrs)</span></li>
-            <li><span class="it-time">~05:30 pm</span><span class="it-place"><strong>Regreso a Mérida</strong></span>
-            </li>
-          </ul>
-        </div>
-        <div class="card-pane" id="pux-incluye">
-          <div class="inc-cols">
-            <div>
-              <p class="inc-sub">✅ Incluye</p>
-              <ul class="inc-list">
-                <li><span class="check">✓</span>Transporte exclusivo A/C</li>
-                <li><span class="check">✓</span>Chofer + Guía certificado</li>
-                <li><span class="check">✓</span>Comida típica 3 tiempos</li>
-                <li><span class="check">✓</span>Nevera con hielo</li>
-              </ul>
-            </div>
-            <div>
-              <p class="inc-sub">❌ No incluye</p>
-              <ul class="no-inc-list">
-                <li><span class="cross">✗</span>Bebidas en restaurante</li>
-                <li><span class="cross">✗</span>Uxmal: MX $275 / Ext $604</li>
-                <li><span class="cross">✗</span>Kabah: MX $85 / Ext $155</li>
-              </ul>
-              <p style="font-size:11px;color:var(--muted);margin-top:8px;line-height:1.5;">Menores de 12 años mexicanos:
-                gratis. Menores extranjeros: $105.</p>
-            </div>
+          <div>
+            <p class="inc-sub">❌ No incluye</p>
+            <ul class="no-inc-list">
+              <li><span class="cross">✗</span>Entrada Chichén Itzá:<br>MX $310 / Ext $695</li>
+            </ul>
           </div>
         </div>
       </div>
+    </div>
 
-    </div><!-- /grid -->
-
-    <!-- Resumen privado Celestún -->
-    <div class="summary-wrap">
-      <div class="summary-card" style="border-color:var(--gold);border-width:2px;">
-        <div class="summary-grid">
-          <div class="sum-item">
-            <p class="lbl">Modalidad</p>
-            <p class="val" style="font-size:1rem;">🔒 Tour Privado</p>
+    <!-- MARTES PRIV: Coloradas -->
+    <div class="card" style="border-top:3px solid var(--gold);">
+      <div class="card-top">
+        <div class="card-icon" style="background:#fef9ec;">🐊</div>
+        <div>
+          <p class="card-day">Martes · 21 Oct 2026 · <span style="color:var(--gold);font-weight:700;">PRIVADO</span></p>
+          <p class="card-name">Coloradas + Playa Cancunito + Río Lagartos</p>
+        </div>
+      </div>
+      <div class="card-tabs">
+        <button class="card-tab active" onclick="switchCard(this,'pcol2-precio')">💰 Precio</button>
+        <button class="card-tab" onclick="switchCard(this,'pcol2-itinerario')">🗺 Itinerario</button>
+        <button class="card-tab" onclick="switchCard(this,'pcol2-incluye')">✅ Incluye</button>
+      </div>
+      <div class="card-pane active" id="pcol2-precio">
+        <div class="price-row"><span class="price-label">Precio / persona</span><span class="price-value discounted">$2,200</span></div>
+        <div class="price-row"><span class="price-label">Vehículo</span><span class="price-value" style="font-size:13px;">🚐 Nissan Urvan</span></div>
+        <div class="price-row"><span class="price-label">Duración</span><span class="price-value" style="font-size:13px;">⏱ 13 hrs</span></div>
+        <div class="total-box">
+          <div class="total-item full"><p class="lbl">Total 8 personas</p><p class="val big">$17,600</p></div>
+          <div class="total-item"><p class="lbl">Anticipo (50%)</p><p class="val">$8,800</p></div>
+          <div class="total-item"><p class="lbl">Saldo restante</p><p class="val">$8,800</p></div>
+        </div>
+      </div>
+      <div class="card-pane" id="pcol2-itinerario">
+        <ul class="itinerary">
+          <li><span class="it-time">07:00 am</span><span class="it-place"><strong>Salida desde Mérida</strong></span></li>
+          <li><span class="it-time">10:45–12:15</span><span class="it-place"><strong>Las Coloradas</strong> Lagunas rosadas de la industria salinera (1.5 hrs)</span></li>
+          <li><span class="it-time">12:25–01:10</span><span class="it-place"><strong>Playa Cancunito</strong> Playa virgen Platino (45 min)</span></li>
+          <li><span class="it-time">01:30–03:30</span><span class="it-place"><strong>Recorrido en lancha – Río Lagartos</strong> Flamencos, manglares, baño maya (2 hrs)</span></li>
+          <li><span class="it-time">03:30–05:00</span><span class="it-place"><strong>Restaurante Maleconcito</strong> Comida a la carta gourmet (1.5 hrs)</span></li>
+          <li><span class="it-time">~08:00 pm</span><span class="it-place"><strong>Regreso a Mérida</strong></span></li>
+        </ul>
+      </div>
+      <div class="card-pane" id="pcol2-incluye">
+        <div class="inc-cols">
+          <div>
+            <p class="inc-sub">✅ Incluye</p>
+            <ul class="inc-list">
+              <li><span class="check">✓</span>Transporte exclusivo A/C</li>
+              <li><span class="check">✓</span>Chofer + Guía certificado</li>
+              <li><span class="check">✓</span>Entrada Las Coloradas</li>
+              <li><span class="check">✓</span>Recorrido en lancha</li>
+              <li><span class="check">✓</span>Binoculares p/ aves</li>
+              <li><span class="check">✓</span>Baño Maya con arcilla</li>
+              <li><span class="check">✓</span>Comida a la carta</li>
+              <li><span class="check">✓</span>Nevera con hielo</li>
+            </ul>
           </div>
-          <div class="sum-item">
-            <p class="lbl">Martes elegido</p>
-            <p class="val" style="font-size:1rem;">🦩 Celestún (consultar)</p>
-          </div>
-          <div class="sum-item">
-            <p class="lbl">Total</p>
-            <p class="val highlight">$47,560</p>
-          </div>
-          <div class="sum-item">
-            <p class="lbl">Total P/P</p>
-            <p class="val highlight">$5,945</p>
-          </div>
-          <div class="sum-item">
-            <p class="lbl">Total anticipos (50%)</p>
-            <p class="val">$23,780</p>
+          <div>
+            <p class="inc-sub">❌ No incluye</p>
+            <ul class="no-inc-list">
+              <li><span class="cross">✗</span>Bebidas durante la comida</li>
+            </ul>
           </div>
         </div>
-        <p class="note">
-          <strong>Desglose:</strong> Lunes Chichén Itzá ($11,160) + Martes Celestún ($13,840) + Miércoles 4 Cenotes ($12,120) + Jueves Uxmal
-          ($10,440).<br>
-          <strong>Anticipo:</strong> 50% del total para confirmar reserva · Saldo en efectivo al abordar o 1 día antes
-          por transferencia.<br>
-          <strong>Sin descuento grupal</strong> en modalidad privada · Vehículo exclusivo (Nissan Urvan) para tu grupo ·
-          Sin pasajeros externos.
+      </div>
+    </div>
+
+    <!-- MIÉRCOLES PRIV: 4 Cenotes -->
+    <div class="card" style="border-top:3px solid var(--gold);">
+      <div class="card-top">
+        <div class="card-icon" style="background:#fef9ec;">🥽</div>
+        <div>
+          <p class="card-day">Miércoles · 22 Oct 2026 · <span style="color:var(--gold);font-weight:700;">PRIVADO</span></p>
+          <p class="card-name">4 Cenotes Plus</p>
+        </div>
+      </div>
+      <div class="card-tabs">
+        <button class="card-tab active" onclick="switchCard(this,'pcn3-precio')">💰 Precio</button>
+        <button class="card-tab" onclick="switchCard(this,'pcn3-itinerario')">🗺 Itinerario</button>
+        <button class="card-tab" onclick="switchCard(this,'pcn3-incluye')">✅ Incluye</button>
+      </div>
+      <div class="card-pane active" id="pcn3-precio">
+        <div class="price-row"><span class="price-label">Precio / persona</span><span class="price-value discounted">$1,515</span></div>
+        <div class="price-row"><span class="price-label">Vehículo</span><span class="price-value" style="font-size:13px;">🚐 Nissan Urvan</span></div>
+        <div class="price-row"><span class="price-label">Duración</span><span class="price-value" style="font-size:13px;">⏱ 9 hrs</span></div>
+        <div class="total-box">
+          <div class="total-item full"><p class="lbl">Total 8 personas</p><p class="val big">$12,120</p></div>
+          <div class="total-item"><p class="lbl">Anticipo (50%)</p><p class="val">$6,060</p></div>
+          <div class="total-item"><p class="lbl">Saldo restante</p><p class="val">$6,060</p></div>
+        </div>
+      </div>
+      <div class="card-pane" id="pcn3-itinerario">
+        <ul class="itinerary">
+          <li><span class="it-time">08:00 am</span><span class="it-place"><strong>Salida desde Mérida</strong></span></li>
+          <li><span class="it-time">09:45–11:45</span><span class="it-place"><strong>Cenotes Santa Rosa</strong> Yuum Kimil + Santa Rosa (2 hrs)</span></li>
+          <li><span class="it-time">12:00–01:00</span><span class="it-place"><strong>Cenote Pool Uinic</strong> Caverna (1 hr)</span></li>
+          <li><span class="it-time">01:15–03:45</span><span class="it-place"><strong>Cenote & Rest. San Antonio</strong> Nado + comida (2.5 hrs)</span></li>
+          <li><span class="it-time">~05:00 pm</span><span class="it-place"><strong>Regreso a Mérida</strong></span></li>
+        </ul>
+      </div>
+      <div class="card-pane" id="pcn3-incluye">
+        <div class="inc-cols">
+          <div>
+            <p class="inc-sub">✅ Incluye</p>
+            <ul class="inc-list">
+              <li><span class="check">✓</span>Transporte exclusivo A/C</li>
+              <li><span class="check">✓</span>Chofer + Guía certificado</li>
+              <li><span class="check">✓</span>Entradas a los 4 cenotes</li>
+              <li><span class="check">✓</span>Chalecos salvavidas</li>
+              <li><span class="check">✓</span>Comida a la carta</li>
+              <li><span class="check">✓</span>Nevera con hielo</li>
+            </ul>
+          </div>
+          <div>
+            <p class="inc-sub">❌ No incluye</p>
+            <ul class="no-inc-list">
+              <li><span class="cross">✗</span>Bebidas en restaurante</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JUEVES PRIV: Uxmal -->
+    <div class="card" style="border-top:3px solid var(--gold);">
+      <div class="card-top">
+        <div class="card-icon" style="background:#fef9ec;">🍫</div>
+        <div>
+          <p class="card-day">Jueves · 23 Oct 2026 · <span style="color:var(--gold);font-weight:700;">PRIVADO</span></p>
+          <p class="card-name">Uxmal + Kabah + Choco Story</p>
+        </div>
+      </div>
+      <div class="card-tabs">
+        <button class="card-tab active" onclick="switchCard(this,'pux3-precio')">💰 Precio</button>
+        <button class="card-tab" onclick="switchCard(this,'pux3-itinerario')">🗺 Itinerario</button>
+        <button class="card-tab" onclick="switchCard(this,'pux3-incluye')">✅ Incluye</button>
+      </div>
+      <div class="card-pane active" id="pux3-precio">
+        <div class="price-row"><span class="price-label">Precio / persona</span><span class="price-value discounted">$1,305</span></div>
+        <div class="price-row"><span class="price-label">Vehículo</span><span class="price-value" style="font-size:13px;">🚐 Nissan Urvan</span></div>
+        <div class="price-row"><span class="price-label">Duración</span><span class="price-value" style="font-size:13px;">⏱ 9 hrs</span></div>
+        <div class="total-box">
+          <div class="total-item full"><p class="lbl">Total 8 personas</p><p class="val big">$10,440</p></div>
+          <div class="total-item"><p class="lbl">Anticipo (50%)</p><p class="val">$5,220</p></div>
+          <div class="total-item"><p class="lbl">Saldo restante</p><p class="val">$5,220</p></div>
+        </div>
+      </div>
+      <div class="card-pane" id="pux3-itinerario">
+        <ul class="itinerary">
+          <li><span class="it-time">08:00 am</span><span class="it-place"><strong>Salida desde Mérida</strong></span></li>
+          <li><span class="it-time">10:00–12:00</span><span class="it-place"><strong>Uxmal</strong> Zona arqueológica (2 hrs)</span></li>
+          <li><span class="it-time">12:20–01:20</span><span class="it-place"><strong>Kabah</strong> Zona arqueológica (1 hr)</span></li>
+          <li><span class="it-time">01:40–02:40</span><span class="it-place"><strong>Restaurante Halach Huinic</strong> 3 tiempos (1 hr)</span></li>
+          <li><span class="it-time">02:45–04:15</span><span class="it-place"><strong>Choco Story</strong> Museo del cacao (1.5 hrs)</span></li>
+          <li><span class="it-time">~05:30 pm</span><span class="it-place"><strong>Regreso a Mérida</strong></span></li>
+        </ul>
+      </div>
+      <div class="card-pane" id="pux3-incluye">
+        <div class="inc-cols">
+          <div>
+            <p class="inc-sub">✅ Incluye</p>
+            <ul class="inc-list">
+              <li><span class="check">✓</span>Transporte exclusivo A/C</li>
+              <li><span class="check">✓</span>Chofer + Guía certificado</li>
+              <li><span class="check">✓</span>Comida típica 3 tiempos</li>
+              <li><span class="check">✓</span>Nevera con hielo</li>
+            </ul>
+          </div>
+          <div>
+            <p class="inc-sub">❌ No incluye</p>
+            <ul class="no-inc-list">
+              <li><span class="cross">✗</span>Bebidas en restaurante</li>
+              <li><span class="cross">✗</span>Uxmal: MX $275 / Ext $604</li>
+              <li><span class="cross">✗</span>Kabah: MX $85 / Ext $155</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /grid -->
+
+  <!-- Resumen privado Coloradas -->
+  <div class="summary-wrap">
+    <div class="summary-card" style="border-color:var(--gold);border-width:2px;">
+      <div class="summary-grid">
+        <div class="sum-item"><p class="lbl">Modalidad</p><p class="val" style="font-size:1rem;">🔒 Tour Privado</p></div>
+        <div class="sum-item"><p class="lbl">Martes elegido</p><p class="val" style="font-size:1rem;">🐊 Coloradas Plus</p></div>
+        <div class="sum-item"><p class="lbl">Total 4 días</p><p class="val highlight">$51,320</p></div>
+        <div class="sum-item"><p class="lbl">Total anticipos (50%)</p><p class="val">$25,660</p></div>
+      </div>
+      <p class="note">
+        <strong>Desglose:</strong> Lunes Chichén Itzá $11,160 + Martes Coloradas $17,600 + Miércoles 4 Cenotes $12,120 + Jueves Uxmal $10,440.<br>
+        <strong>Anticipo:</strong> 50% del total de cada tour para confirmar reserva · Saldo en efectivo al abordar o 1 día antes por transferencia.<br>
+        <strong>Sin descuento grupal</strong> en modalidad privada · Vehículo exclusivo (Nissan Urvan) · Sin pasajeros externos · Precio válido para 8–10 personas.
+      </p>
+    </div>
+  </div>
+</div><!-- /ppanel-pcolo -->
+
+  <!-- ===== CATÁLOGO COMPLETO ===== -->
+  <div style="background:var(--cream);padding:0 0 60px;">
+
+    <!-- Separador visual -->
+    <div style="background:var(--teal);padding:56px 40px 64px;position:relative;overflow:hidden;margin-bottom:0;">
+      <div style="position:absolute;inset:0;background:url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.04\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/svg%3E');"></div>
+      <div style="position:absolute;bottom:-1px;left:0;right:0;height:44px;background:var(--cream);clip-path:ellipse(55% 100% at 50% 100%);"></div>
+      <p style="font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.65);font-weight:500;margin-bottom:12px;position:relative;">Viajes Colibrí Yucatán · Tours desde Mérida</p>
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);color:#fff;line-height:1.2;position:relative;">
+        Catálogo <em style="font-style:italic;color:var(--gold)">Completo</em><br>de Tours Grupales 2026
+      </h2>
+      <p style="color:rgba(255,255,255,.75);font-size:14px;margin-top:14px;position:relative;max-width:560px;line-height:1.65;">
+        Todos los tours salen desde Mérida, Yucatán. Grupos reducidos de hasta 19 personas · Guías certificados · Camionetas modernas con A/C · Salidas todos los días (salvo excepciones indicadas).
+      </p>
+    </div>
+
+    <!-- Grid de tours del catálogo -->
+    <div style="max-width:1100px;margin:48px auto 0;padding:0 28px;">
+
+      <!-- Fila 1: Tours diarios principales -->
+      <p style="font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);margin-bottom:16px;">📅 Salida todos los días</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin-bottom:40px;">
+
+        <!-- Chichén Itzá -->
+        <div style="background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 4px 18px rgba(45,90,61,.08);transition:transform .2s;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='none'">
+          <div style="background:linear-gradient(135deg,#2d5a3d,#1e7b6e);padding:20px 20px 16px;display:flex;align-items:center;gap:12px;">
+            <span style="font-size:2rem;">👒</span>
+            <div>
+              <p style="color:rgba(255,255,255,.6);font-size:10px;letter-spacing:2px;text-transform:uppercase;">Arqueología + Cenote + Pueblo</p>
+              <p style="color:#fff;font-family:'Playfair Display',serif;font-size:1.1rem;line-height:1.2;">Chichén Itzá Premium</p>
+            </div>
+          </div>
+          <div style="padding:16px 20px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+              <span style="font-size:11px;color:var(--muted);text-decoration:line-through;">$1,350</span>
+              <span style="background:var(--jungle);color:#fff;font-size:12px;font-weight:700;padding:3px 10px;border-radius:100px;">$1,150 adulto</span>
+            </div>
+            <p style="font-size:11.5px;color:var(--muted);line-height:1.6;margin-bottom:10px;">Chichén Itzá · Cenote Ik Kil · Rest. Xaybe'h (buffet) · Izamal Pueblo Mágico</p>
+            <div style="border-top:1px solid #f0ebe4;padding-top:10px;display:flex;gap:16px;">
+              <span style="font-size:11px;color:var(--teal);">⏱ ~12 hrs</span>
+              <span style="font-size:11px;color:var(--muted);">🕖 Sale 7:00 am</span>
+            </div>
+            <div style="margin-top:10px;font-size:11px;color:var(--muted);">
+              <span style="color:var(--red);">⚠ No incluye:</span> Entrada zona arqueológica (MX $310 / Ext $697)
+            </div>
+          </div>
+        </div>
+
+        <!-- Coloradas -->
+        <div style="background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 4px 18px rgba(45,90,61,.08);transition:transform .2s;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='none'">
+          <div style="background:linear-gradient(135deg,#1a5276,#1e7b6e);padding:20px 20px 16px;display:flex;align-items:center;gap:12px;">
+            <span style="font-size:2rem;">🐊</span>
+            <div>
+              <p style="color:rgba(255,255,255,.6);font-size:10px;letter-spacing:2px;text-transform:uppercase;">Lagunas + Playa + Naturaleza</p>
+              <p style="color:#fff;font-family:'Playfair Display',serif;font-size:1.1rem;line-height:1.2;">Coloradas Plus</p>
+            </div>
+          </div>
+          <div style="padding:16px 20px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+              <span style="font-size:11px;color:var(--muted);text-decoration:line-through;">$1,950</span>
+              <span style="background:var(--jungle);color:#fff;font-size:12px;font-weight:700;padding:3px 10px;border-radius:100px;">$1,685 adulto</span>
+            </div>
+            <p style="font-size:11.5px;color:var(--muted);line-height:1.6;margin-bottom:10px;">Las Coloradas · Playa Cancunito · Lancha en Río Lagartos · Rest. Maleconcito (gourmet)</p>
+            <div style="border-top:1px solid #f0ebe4;padding-top:10px;display:flex;gap:16px;">
+              <span style="font-size:11px;color:var(--teal);">⏱ ~13 hrs</span>
+              <span style="font-size:11px;color:var(--muted);">🕖 Sale 7:00 am</span>
+            </div>
+            <div style="margin-top:10px;font-size:11px;color:var(--muted);">
+              <span style="color:var(--red);">⚠ No incluye:</span> Bebidas en restaurante
+            </div>
+          </div>
+        </div>
+
+        <!-- Celestún -->
+        <div style="background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 4px 18px rgba(45,90,61,.08);transition:transform .2s;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='none'">
+          <div style="background:linear-gradient(135deg,#c0784a,#d4a843);padding:20px 20px 16px;display:flex;align-items:center;gap:12px;">
+            <span style="font-size:2rem;">🦩</span>
+            <div>
+              <p style="color:rgba(255,255,255,.6);font-size:10px;letter-spacing:2px;text-transform:uppercase;">Flamencos + Manglares + Playa</p>
+              <p style="color:#fff;font-family:'Playfair Display',serif;font-size:1.1rem;line-height:1.2;">Celestún Plus</p>
+            </div>
+          </div>
+          <div style="padding:16px 20px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+              <span style="font-size:11px;color:var(--muted);text-decoration:line-through;">$1,750</span>
+              <span style="background:var(--jungle);color:#fff;font-size:12px;font-weight:700;padding:3px 10px;border-radius:100px;">$1,475 adulto</span>
+            </div>
+            <p style="font-size:11.5px;color:var(--muted);line-height:1.6;margin-bottom:10px;">Lancha en Celestún · Flamencos rosados · Túnel de manglares · Baño maya · Rest. Tía Candi (playa)</p>
+            <div style="border-top:1px solid #f0ebe4;padding-top:10px;display:flex;gap:16px;">
+              <span style="font-size:11px;color:var(--teal);">⏱ ~9 hrs</span>
+              <span style="font-size:11px;color:var(--muted);">🕗 Sale 8:00 am</span>
+            </div>
+            <div style="margin-top:10px;font-size:11px;color:var(--muted);">
+              <span style="color:var(--red);">⚠ No incluye:</span> Bebidas en restaurante
+            </div>
+          </div>
+        </div>
+
+        <!-- 4 Cenotes -->
+        <div style="background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 4px 18px rgba(45,90,61,.08);transition:transform .2s;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='none'">
+          <div style="background:linear-gradient(135deg,#1a5276,#2d5a3d);padding:20px 20px 16px;display:flex;align-items:center;gap:12px;">
+            <span style="font-size:2rem;">🥽</span>
+            <div>
+              <p style="color:rgba(255,255,255,.6);font-size:10px;letter-spacing:2px;text-transform:uppercase;">Cenotes + Snorkel + Comida</p>
+              <p style="color:#fff;font-family:'Playfair Display',serif;font-size:1.1rem;line-height:1.2;">4 Cenotes Plus</p>
+            </div>
+          </div>
+          <div style="padding:16px 20px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+              <span style="font-size:11px;color:var(--muted);text-decoration:line-through;">$1,450</span>
+              <span style="background:var(--jungle);color:#fff;font-size:12px;font-weight:700;padding:3px 10px;border-radius:100px;">$1,225 adulto</span>
+            </div>
+            <p style="font-size:11.5px;color:var(--muted);line-height:1.6;margin-bottom:10px;">Cenotes Santa Rosa (Yuum Kimil) · Pool Uinic · San Antonio · comida típica incluida</p>
+            <div style="border-top:1px solid #f0ebe4;padding-top:10px;display:flex;gap:16px;">
+              <span style="font-size:11px;color:var(--teal);">⏱ ~9 hrs</span>
+              <span style="font-size:11px;color:var(--muted);">🕗 Sale 8:00 am</span>
+            </div>
+            <div style="margin-top:10px;font-size:11px;color:var(--muted);">
+              <span style="color:var(--red);">⚠ No incluye:</span> Bebidas en restaurante
+            </div>
+          </div>
+        </div>
+
+        <!-- Uxmal -->
+        <div style="background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 4px 18px rgba(45,90,61,.08);transition:transform .2s;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='none'">
+          <div style="background:linear-gradient(135deg,#6e2f0a,#c0784a);padding:20px 20px 16px;display:flex;align-items:center;gap:12px;">
+            <span style="font-size:2rem;">🍫</span>
+            <div>
+              <p style="color:rgba(255,255,255,.6);font-size:10px;letter-spacing:2px;text-transform:uppercase;">Arqueología + Cacao + Historia</p>
+              <p style="color:#fff;font-family:'Playfair Display',serif;font-size:1.1rem;line-height:1.2;">Uxmal Plus</p>
+            </div>
+          </div>
+          <div style="padding:16px 20px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+              <span style="font-size:11px;color:var(--muted);text-decoration:line-through;">$1,450</span>
+              <span style="background:var(--jungle);color:#fff;font-size:12px;font-weight:700;padding:3px 10px;border-radius:100px;">$1,175 adulto</span>
+            </div>
+            <p style="font-size:11.5px;color:var(--muted);line-height:1.6;margin-bottom:10px;">Uxmal · Kabah · Rest. Halach Huinic (3 tiempos) · Choco Story Museo del Cacao</p>
+            <div style="border-top:1px solid #f0ebe4;padding-top:10px;display:flex;gap:16px;">
+              <span style="font-size:11px;color:var(--teal);">⏱ ~9 hrs</span>
+              <span style="font-size:11px;color:var(--muted);">🕗 Sale 8:00 am</span>
+            </div>
+            <div style="margin-top:10px;font-size:11px;color:var(--muted);">
+              <span style="color:var(--red);">⚠ No incluye:</span> Uxmal MX $275 / Kabah MX $85
+            </div>
+          </div>
+        </div>
+
+        <!-- Valladolid -->
+        <div style="background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 4px 18px rgba(45,90,61,.08);transition:transform .2s;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='none'">
+          <div style="background:linear-gradient(135deg,#1a3a5c,#1e7b6e);padding:20px 20px 16px;display:flex;align-items:center;gap:12px;">
+            <span style="font-size:2rem;">💎</span>
+            <div>
+              <p style="color:rgba(255,255,255,.6);font-size:10px;letter-spacing:2px;text-transform:uppercase;">3 Cenotes + Pueblo Colonial</p>
+              <p style="color:#fff;font-family:'Playfair Display',serif;font-size:1.1rem;line-height:1.2;">Valladolid Premium</p>
+            </div>
+          </div>
+          <div style="padding:16px 20px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+              <span style="font-size:11px;color:var(--muted);text-decoration:line-through;">$1,650</span>
+              <span style="background:var(--jungle);color:#fff;font-size:12px;font-weight:700;padding:3px 10px;border-radius:100px;">$1,375 adulto</span>
+            </div>
+            <p style="font-size:11.5px;color:var(--muted);line-height:1.6;margin-bottom:10px;">Cenote Suytun · Cenote Oxman · Cenote Real Dzonot (buffet) · Valladolid Centro Histórico</p>
+            <div style="border-top:1px solid #f0ebe4;padding-top:10px;display:flex;gap:16px;">
+              <span style="font-size:11px;color:var(--teal);">⏱ ~12 hrs</span>
+              <span style="font-size:11px;color:var(--muted);">🕖 Sale 7:00 am</span>
+            </div>
+            <div style="margin-top:10px;font-size:11px;color:var(--muted);">
+              <span style="color:var(--teal);">✓ Todo incluido</span> (entradas cenotes, buffet, bebida)
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Fila 2: Tours días específicos -->
+      <p style="font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);margin-bottom:16px;">📅 Días específicos de la semana</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin-bottom:40px;">
+
+        <!-- Sisal -->
+        <div style="background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 4px 18px rgba(45,90,61,.08);transition:transform .2s;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='none'">
+          <div style="background:linear-gradient(135deg,#117a65,#1a5276);padding:20px 20px 16px;display:flex;align-items:center;gap:12px;">
+            <span style="font-size:2rem;">🚣</span>
+            <div>
+              <p style="color:rgba(255,255,255,.6);font-size:10px;letter-spacing:2px;text-transform:uppercase;">Vie · Sáb · Dom</p>
+              <p style="color:#fff;font-family:'Playfair Display',serif;font-size:1.1rem;line-height:1.2;">Sisal Clásico</p>
+            </div>
+          </div>
+          <div style="padding:16px 20px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+              <span style="font-size:11px;color:var(--muted);text-decoration:line-through;">$1,550</span>
+              <span style="background:var(--jungle);color:#fff;font-size:12px;font-weight:700;padding:3px 10px;border-radius:100px;">$1,275 adulto</span>
+            </div>
+            <p style="font-size:11.5px;color:var(--muted);line-height:1.6;margin-bottom:10px;">Kayak o Chalana en manglares · Ojo de Agua Carbonera · Playa Sisal Pueblo Mágico (3 hrs libre)</p>
+            <div style="border-top:1px solid #f0ebe4;padding-top:10px;display:flex;gap:16px;">
+              <span style="font-size:11px;color:var(--teal);">⏱ ~9 hrs</span>
+              <span style="font-size:11px;color:var(--muted);">🕗 Sale 8:00 am</span>
+            </div>
+            <div style="margin-top:10px;font-size:11px;color:var(--muted);">
+              <span style="color:var(--red);">⚠ No incluye:</span> Alimentos y bebidas
+            </div>
+          </div>
+        </div>
+
+        <!-- Mucuyché -->
+        <div style="background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 4px 18px rgba(45,90,61,.08);transition:transform .2s;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='none'">
+          <div style="background:linear-gradient(135deg,#4a235a,#1e7b6e);padding:20px 20px 16px;display:flex;align-items:center;gap:12px;">
+            <span style="font-size:2rem;">🏰</span>
+            <div>
+              <p style="color:rgba(255,255,255,.6);font-size:10px;letter-spacing:2px;text-transform:uppercase;">Solo Viernes</p>
+              <p style="color:#fff;font-family:'Playfair Display',serif;font-size:1.1rem;line-height:1.2;">Mucuyché Clásico</p>
+            </div>
+          </div>
+          <div style="padding:16px 20px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+              <span style="font-size:11px;color:var(--muted);text-decoration:line-through;">$1,750</span>
+              <span style="background:var(--jungle);color:#fff;font-size:12px;font-weight:700;padding:3px 10px;border-radius:100px;">$1,450 adulto</span>
+            </div>
+            <p style="font-size:11.5px;color:var(--muted);line-height:1.6;margin-bottom:10px;">Oxkintok zona arqueológica · Hacienda Mucuyché · Cenotes Carlota y Azul Maya · Restaurante hacienda</p>
+            <div style="border-top:1px solid #f0ebe4;padding-top:10px;display:flex;gap:16px;">
+              <span style="font-size:11px;color:var(--teal);">⏱ ~9 hrs</span>
+              <span style="font-size:11px;color:var(--muted);">🕗 Sale 8:00 am</span>
+            </div>
+            <div style="margin-top:10px;font-size:11px;color:var(--muted);">
+              <span style="color:var(--red);">⚠ No incluye:</span> Alimentos y bebidas
+            </div>
+          </div>
+        </div>
+
+        <!-- Bacalar -->
+        <div style="background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 4px 18px rgba(45,90,61,.08);transition:transform .2s;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='none'">
+          <div style="background:linear-gradient(135deg,#0e6655,#1a5276);padding:20px 20px 16px;display:flex;align-items:center;gap:12px;">
+            <span style="font-size:2rem;">🌊</span>
+            <div>
+              <p style="color:rgba(255,255,255,.6);font-size:10px;letter-spacing:2px;text-transform:uppercase;">Solo Sábados</p>
+              <p style="color:#fff;font-family:'Playfair Display',serif;font-size:1.1rem;line-height:1.2;">Bacalar Plus</p>
+            </div>
+          </div>
+          <div style="padding:16px 20px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+              <span style="font-size:11px;color:var(--muted);text-decoration:line-through;">$1,900</span>
+              <span style="background:var(--jungle);color:#fff;font-size:12px;font-weight:700;padding:3px 10px;border-radius:100px;">$1,625 adulto</span>
+            </div>
+            <p style="font-size:11.5px;color:var(--muted);line-height:1.6;margin-bottom:10px;">Laguna de los 7 Colores de Bacalar · Recorrido en lancha · Restaurante frente a la laguna · Cenote Azul</p>
+            <div style="border-top:1px solid #f0ebe4;padding-top:10px;display:flex;gap:16px;">
+              <span style="font-size:11px;color:var(--teal);">⏱ ~18 hrs</span>
+              <span style="font-size:11px;color:var(--clay);">🕓 Sale 4:00 am</span>
+            </div>
+            <div style="margin-top:10px;font-size:11px;color:var(--muted);">
+              <span style="color:var(--red);">⚠ No incluye:</span> Alimentos, bebidas, chaleco en cenote
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Tabla comparativa de precios -->
+      <div style="background:#fff;border-radius:20px;padding:28px 28px 24px;box-shadow:0 4px 18px rgba(45,90,61,.07);margin-bottom:0;">
+        <p style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">Referencia rápida</p>
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--jungle);margin-bottom:20px;">Precios por persona · Modalidad grupal 2026</h3>
+        <div style="overflow-x:auto;">
+          <table style="width:100%;border-collapse:collapse;font-size:13px;">
+            <thead>
+              <tr style="background:var(--jungle);color:#fff;">
+                <th style="padding:10px 14px;text-align:left;border-radius:8px 0 0 0;font-weight:500;">Tour</th>
+                <th style="padding:10px 14px;text-align:center;font-weight:500;">Precio regular</th>
+                <th style="padding:10px 14px;text-align:center;font-weight:500;">Con desc. 20%</th>
+                <th style="padding:10px 14px;text-align:center;font-weight:500;">Menor (4–11)</th>
+                <th style="padding:10px 14px;text-align:center;border-radius:0 8px 0 0;font-weight:500;">Salidas</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="background:#fdfaf6;">
+                <td style="padding:10px 14px;font-weight:500;">👒 Chichén Itzá Premium</td>
+                <td style="padding:10px 14px;text-align:center;text-decoration:line-through;color:var(--muted);">$1,350</td>
+                <td style="padding:10px 14px;text-align:center;color:var(--teal);font-weight:700;">$1,150</td>
+                <td style="padding:10px 14px;text-align:center;color:var(--muted);">$920</td>
+                <td style="padding:10px 14px;text-align:center;font-size:11px;color:var(--jungle);">Todos los días</td>
+              </tr>
+              <tr>
+                <td style="padding:10px 14px;font-weight:500;">🐊 Coloradas Plus</td>
+                <td style="padding:10px 14px;text-align:center;text-decoration:line-through;color:var(--muted);">$1,950</td>
+                <td style="padding:10px 14px;text-align:center;color:var(--teal);font-weight:700;">$1,685</td>
+                <td style="padding:10px 14px;text-align:center;color:var(--muted);">$1,348</td>
+                <td style="padding:10px 14px;text-align:center;font-size:11px;color:var(--jungle);">Todos los días</td>
+              </tr>
+              <tr style="background:#fdfaf6;">
+                <td style="padding:10px 14px;font-weight:500;">🦩 Celestún Plus</td>
+                <td style="padding:10px 14px;text-align:center;text-decoration:line-through;color:var(--muted);">$1,750</td>
+                <td style="padding:10px 14px;text-align:center;color:var(--teal);font-weight:700;">$1,475</td>
+                <td style="padding:10px 14px;text-align:center;color:var(--muted);">$1,180</td>
+                <td style="padding:10px 14px;text-align:center;font-size:11px;color:var(--jungle);">Todos los días</td>
+              </tr>
+              <tr>
+                <td style="padding:10px 14px;font-weight:500;">🥽 4 Cenotes Plus</td>
+                <td style="padding:10px 14px;text-align:center;text-decoration:line-through;color:var(--muted);">$1,450</td>
+                <td style="padding:10px 14px;text-align:center;color:var(--teal);font-weight:700;">$1,225</td>
+                <td style="padding:10px 14px;text-align:center;color:var(--muted);">$980</td>
+                <td style="padding:10px 14px;text-align:center;font-size:11px;color:var(--jungle);">Todos los días</td>
+              </tr>
+              <tr style="background:#fdfaf6;">
+                <td style="padding:10px 14px;font-weight:500;">🍫 Uxmal Plus</td>
+                <td style="padding:10px 14px;text-align:center;text-decoration:line-through;color:var(--muted);">$1,450</td>
+                <td style="padding:10px 14px;text-align:center;color:var(--teal);font-weight:700;">$1,175</td>
+                <td style="padding:10px 14px;text-align:center;color:var(--muted);">$940</td>
+                <td style="padding:10px 14px;text-align:center;font-size:11px;color:var(--jungle);">Todos los días</td>
+              </tr>
+              <tr>
+                <td style="padding:10px 14px;font-weight:500;">💎 Valladolid Premium</td>
+                <td style="padding:10px 14px;text-align:center;text-decoration:line-through;color:var(--muted);">$1,650</td>
+                <td style="padding:10px 14px;text-align:center;color:var(--teal);font-weight:700;">$1,375</td>
+                <td style="padding:10px 14px;text-align:center;color:var(--muted);">$1,100</td>
+                <td style="padding:10px 14px;text-align:center;font-size:11px;color:var(--jungle);">Todos los días</td>
+              </tr>
+              <tr style="background:#fdfaf6;">
+                <td style="padding:10px 14px;font-weight:500;">🚣 Sisal Clásico</td>
+                <td style="padding:10px 14px;text-align:center;text-decoration:line-through;color:var(--muted);">$1,550</td>
+                <td style="padding:10px 14px;text-align:center;color:var(--teal);font-weight:700;">$1,275</td>
+                <td style="padding:10px 14px;text-align:center;color:var(--muted);">$1,020</td>
+                <td style="padding:10px 14px;text-align:center;font-size:11px;color:var(--clay);">Vie · Sáb · Dom</td>
+              </tr>
+              <tr>
+                <td style="padding:10px 14px;font-weight:500;">🏰 Mucuyché Clásico</td>
+                <td style="padding:10px 14px;text-align:center;text-decoration:line-through;color:var(--muted);">$1,750</td>
+                <td style="padding:10px 14px;text-align:center;color:var(--teal);font-weight:700;">$1,450</td>
+                <td style="padding:10px 14px;text-align:center;color:var(--muted);">$1,160</td>
+                <td style="padding:10px 14px;text-align:center;font-size:11px;color:var(--clay);">Solo Viernes</td>
+              </tr>
+              <tr style="background:#fdfaf6;border-bottom:2px solid var(--sand);">
+                <td style="padding:10px 14px;font-weight:500;">🌊 Bacalar Plus</td>
+                <td style="padding:10px 14px;text-align:center;text-decoration:line-through;color:var(--muted);">$1,900</td>
+                <td style="padding:10px 14px;text-align:center;color:var(--teal);font-weight:700;">$1,625</td>
+                <td style="padding:10px 14px;text-align:center;color:var(--muted);">$1,300</td>
+                <td style="padding:10px 14px;text-align:center;font-size:11px;color:var(--clay);">Solo Sábados</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size:11px;color:var(--muted);margin-top:14px;line-height:1.65;">
+          * Precios en MXN · El descuento del 20% aplica en modalidad grupal · Anticipo $500 MXN por persona por día de tour · Gratis menores de 12 años y maestros/estudiantes/3ª edad con credencial vigente en zonas arqueológicas · Domingos entrada gratis a pirámides con INE (mexicanos)
         </p>
       </div>
-    </div>
-  </div><!-- /ppanel-pcele -->
 
-  <!-- OPCIÓN PRIVADA B: COLORADAS -->
-  <div class="option-panel" id="ppanel-pcolo">
-    <div class="grid">
-
-      <!-- LUNES PRIV: Chichén (mismo) -->
-      <div class="card" style="border-top:3px solid var(--gold);">
-        <div class="card-top">
-          <div class="card-icon" style="background:#fef9ec;">👒</div>
-          <div>
-            <p class="card-day">Lunes · 19 Oct 2026 · <span style="color:var(--gold);font-weight:700;">PRIVADO</span>
-            </p>
-            <p class="card-name">Chichén Itzá + Cenote Ik Kil + Izamal</p>
-          </div>
-        </div>
-        <div class="card-tabs">
-          <button class="card-tab active" onclick="switchCard(this,'pci3-precio')">💰 Precio</button>
-          <button class="card-tab" onclick="switchCard(this,'pci3-itinerario')">🗺 Itinerario</button>
-          <button class="card-tab" onclick="switchCard(this,'pci3-incluye')">✅ Incluye</button>
-        </div>
-        <div class="card-pane active" id="pci3-precio">
-          <div class="price-row"><span class="price-label">Precio / persona</span><span
-              class="price-value discounted">$1,395</span></div>
-          <div class="price-row"><span class="price-label">Vehículo</span><span class="price-value"
-              style="font-size:13px;">🚐 Nissan Urvan</span></div>
-          <div class="price-row"><span class="price-label">Duración</span><span class="price-value"
-              style="font-size:13px;">⏱ 12 hrs</span></div>
-          <div class="total-box">
-            <div class="total-item full">
-              <p class="lbl">Total 8 personas</p>
-              <p class="val big">$11,160</p>
-            </div>
-            <div class="total-item">
-              <p class="lbl">Anticipo (50%)</p>
-              <p class="val">$5,580</p>
-            </div>
-            <div class="total-item">
-              <p class="lbl">Saldo restante</p>
-              <p class="val">$5,580</p>
-            </div>
-          </div>
-        </div>
-        <div class="card-pane" id="pci3-itinerario">
-          <ul class="itinerary">
-            <li><span class="it-time">07:00 am</span><span class="it-place"><strong>Salida desde Mérida</strong></span>
-            </li>
-            <li><span class="it-time">09:30–12:00</span><span class="it-place"><strong>Chichén Itzá</strong> Zona
-                arqueológica (2.5 hrs)</span></li>
-            <li><span class="it-time">12:15–01:45</span><span class="it-place"><strong>Cenote Ik Kil</strong> Nadar (1.5
-                hrs)</span></li>
-            <li><span class="it-time">02:00–03:00</span><span class="it-place"><strong>Restaurante Xaybe'h</strong>
-                Buffet + bebida (1 hr)</span></li>
-            <li><span class="it-time">04:00–05:30</span><span class="it-place"><strong>Izamal</strong> Pueblo Mágico
-                (1.5 hrs)</span></li>
-            <li><span class="it-time">~07:00 pm</span><span class="it-place"><strong>Regreso a Mérida</strong></span>
-            </li>
-          </ul>
-        </div>
-        <div class="card-pane" id="pci3-incluye">
-          <div class="inc-cols">
-            <div>
-              <p class="inc-sub">✅ Incluye</p>
-              <ul class="inc-list">
-                <li><span class="check">✓</span>Transporte exclusivo A/C</li>
-                <li><span class="check">✓</span>Chofer + Guía certificado</li>
-                <li><span class="check">✓</span>Buffet + 1 bebida</li>
-                <li><span class="check">✓</span>Entrada Cenote Ik Kil</li>
-                <li><span class="check">✓</span>Chaleco · Peajes · Nevera</li>
-              </ul>
-            </div>
-            <div>
-              <p class="inc-sub">❌ No incluye</p>
-              <ul class="no-inc-list">
-                <li><span class="cross">✗</span>Entrada Chichén Itzá:<br>MX $310 / Ext $695</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- MARTES PRIV: Coloradas -->
-      <div class="card" style="border-top:3px solid var(--gold);">
-        <div class="card-top">
-          <div class="card-icon" style="background:#fef9ec;">🐊</div>
-          <div>
-            <p class="card-day">Martes · 21 Oct 2026 · <span style="color:var(--gold);font-weight:700;">PRIVADO</span>
-            </p>
-            <p class="card-name">Coloradas + Playa Cancunito + Río Lagartos</p>
-          </div>
-        </div>
-        <div class="card-tabs">
-          <button class="card-tab active" onclick="switchCard(this,'pcol2-precio')">💰 Precio</button>
-          <button class="card-tab" onclick="switchCard(this,'pcol2-itinerario')">🗺 Itinerario</button>
-          <button class="card-tab" onclick="switchCard(this,'pcol2-incluye')">✅ Incluye</button>
-        </div>
-        <div class="card-pane active" id="pcol2-precio">
-          <div class="price-row"><span class="price-label">Precio / persona</span><span
-              class="price-value discounted">$2,200</span></div>
-          <div class="price-row"><span class="price-label">Vehículo</span><span class="price-value"
-              style="font-size:13px;">🚐 Nissan Urvan</span></div>
-          <div class="price-row"><span class="price-label">Duración</span><span class="price-value"
-              style="font-size:13px;">⏱ 13 hrs</span></div>
-          <div class="total-box">
-            <div class="total-item full">
-              <p class="lbl">Total 8 personas</p>
-              <p class="val big">$17,600</p>
-            </div>
-            <div class="total-item">
-              <p class="lbl">Anticipo (50%)</p>
-              <p class="val">$8,800</p>
-            </div>
-            <div class="total-item">
-              <p class="lbl">Saldo restante</p>
-              <p class="val">$8,800</p>
-            </div>
-          </div>
-        </div>
-        <div class="card-pane" id="pcol2-itinerario">
-          <ul class="itinerary">
-            <li><span class="it-time">07:00 am</span><span class="it-place"><strong>Salida desde Mérida</strong></span>
-            </li>
-            <li><span class="it-time">10:45–12:15</span><span class="it-place"><strong>Las Coloradas</strong> Lagunas
-                rosadas de la industria salinera (1.5 hrs)</span></li>
-            <li><span class="it-time">12:25–01:10</span><span class="it-place"><strong>Playa Cancunito</strong> Playa
-                virgen Platino (45 min)</span></li>
-            <li><span class="it-time">01:30–03:30</span><span class="it-place"><strong>Recorrido en lancha – Río
-                  Lagartos</strong> Flamencos, manglares, baño maya (2 hrs)</span></li>
-            <li><span class="it-time">03:30–05:00</span><span class="it-place"><strong>Restaurante Maleconcito</strong>
-                Comida a la carta gourmet (1.5 hrs)</span></li>
-            <li><span class="it-time">~08:00 pm</span><span class="it-place"><strong>Regreso a Mérida</strong></span>
-            </li>
-          </ul>
-        </div>
-        <div class="card-pane" id="pcol2-incluye">
-          <div class="inc-cols">
-            <div>
-              <p class="inc-sub">✅ Incluye</p>
-              <ul class="inc-list">
-                <li><span class="check">✓</span>Transporte exclusivo A/C</li>
-                <li><span class="check">✓</span>Chofer + Guía certificado</li>
-                <li><span class="check">✓</span>Entrada Las Coloradas</li>
-                <li><span class="check">✓</span>Recorrido en lancha</li>
-                <li><span class="check">✓</span>Binoculares p/ aves</li>
-                <li><span class="check">✓</span>Baño Maya con arcilla</li>
-                <li><span class="check">✓</span>Comida a la carta</li>
-                <li><span class="check">✓</span>Nevera con hielo</li>
-              </ul>
-            </div>
-            <div>
-              <p class="inc-sub">❌ No incluye</p>
-              <ul class="no-inc-list">
-                <li><span class="cross">✗</span>Bebidas durante la comida</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- MIÉRCOLES PRIV: 4 Cenotes -->
-      <div class="card" style="border-top:3px solid var(--gold);">
-        <div class="card-top">
-          <div class="card-icon" style="background:#fef9ec;">🥽</div>
-          <div>
-            <p class="card-day">Miércoles · 22 Oct 2026 · <span
-                style="color:var(--gold);font-weight:700;">PRIVADO</span></p>
-            <p class="card-name">4 Cenotes Plus</p>
-          </div>
-        </div>
-        <div class="card-tabs">
-          <button class="card-tab active" onclick="switchCard(this,'pcn3-precio')">💰 Precio</button>
-          <button class="card-tab" onclick="switchCard(this,'pcn3-itinerario')">🗺 Itinerario</button>
-          <button class="card-tab" onclick="switchCard(this,'pcn3-incluye')">✅ Incluye</button>
-        </div>
-        <div class="card-pane active" id="pcn3-precio">
-          <div class="price-row"><span class="price-label">Precio / persona</span><span
-              class="price-value discounted">$1,515</span></div>
-          <div class="price-row"><span class="price-label">Vehículo</span><span class="price-value"
-              style="font-size:13px;">🚐 Nissan Urvan</span></div>
-          <div class="price-row"><span class="price-label">Duración</span><span class="price-value"
-              style="font-size:13px;">⏱ 9 hrs</span></div>
-          <div class="total-box">
-            <div class="total-item full">
-              <p class="lbl">Total 8 personas</p>
-              <p class="val big">$12,120</p>
-            </div>
-            <div class="total-item">
-              <p class="lbl">Anticipo (50%)</p>
-              <p class="val">$6,060</p>
-            </div>
-            <div class="total-item">
-              <p class="lbl">Saldo restante</p>
-              <p class="val">$6,060</p>
-            </div>
-          </div>
-        </div>
-        <div class="card-pane" id="pcn3-itinerario">
-          <ul class="itinerary">
-            <li><span class="it-time">08:00 am</span><span class="it-place"><strong>Salida desde Mérida</strong></span>
-            </li>
-            <li><span class="it-time">09:45–11:45</span><span class="it-place"><strong>Cenotes Santa Rosa</strong> Yuum
-                Kimil + Santa Rosa (2 hrs)</span></li>
-            <li><span class="it-time">12:00–01:00</span><span class="it-place"><strong>Cenote Pool Uinic</strong>
-                Caverna (1 hr)</span></li>
-            <li><span class="it-time">01:15–03:45</span><span class="it-place"><strong>Cenote & Rest. San
-                  Antonio</strong> Nado + comida (2.5 hrs)</span></li>
-            <li><span class="it-time">~05:00 pm</span><span class="it-place"><strong>Regreso a Mérida</strong></span>
-            </li>
-          </ul>
-        </div>
-        <div class="card-pane" id="pcn3-incluye">
-          <div class="inc-cols">
-            <div>
-              <p class="inc-sub">✅ Incluye</p>
-              <ul class="inc-list">
-                <li><span class="check">✓</span>Transporte exclusivo A/C</li>
-                <li><span class="check">✓</span>Chofer + Guía certificado</li>
-                <li><span class="check">✓</span>Entradas a los 4 cenotes</li>
-                <li><span class="check">✓</span>Chalecos salvavidas</li>
-                <li><span class="check">✓</span>Comida a la carta</li>
-                <li><span class="check">✓</span>Nevera con hielo</li>
-              </ul>
-            </div>
-            <div>
-              <p class="inc-sub">❌ No incluye</p>
-              <ul class="no-inc-list">
-                <li><span class="cross">✗</span>Bebidas en restaurante</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- JUEVES PRIV: Uxmal -->
-      <div class="card" style="border-top:3px solid var(--gold);">
-        <div class="card-top">
-          <div class="card-icon" style="background:#fef9ec;">🍫</div>
-          <div>
-            <p class="card-day">Jueves · 23 Oct 2026 · <span style="color:var(--gold);font-weight:700;">PRIVADO</span>
-            </p>
-            <p class="card-name">Uxmal + Kabah + Choco Story</p>
-          </div>
-        </div>
-        <div class="card-tabs">
-          <button class="card-tab active" onclick="switchCard(this,'pux3-precio')">💰 Precio</button>
-          <button class="card-tab" onclick="switchCard(this,'pux3-itinerario')">🗺 Itinerario</button>
-          <button class="card-tab" onclick="switchCard(this,'pux3-incluye')">✅ Incluye</button>
-        </div>
-        <div class="card-pane active" id="pux3-precio">
-          <div class="price-row"><span class="price-label">Precio / persona</span><span
-              class="price-value discounted">$1,305</span></div>
-          <div class="price-row"><span class="price-label">Vehículo</span><span class="price-value"
-              style="font-size:13px;">🚐 Nissan Urvan</span></div>
-          <div class="price-row"><span class="price-label">Duración</span><span class="price-value"
-              style="font-size:13px;">⏱ 9 hrs</span></div>
-          <div class="total-box">
-            <div class="total-item full">
-              <p class="lbl">Total 8 personas</p>
-              <p class="val big">$10,440</p>
-            </div>
-            <div class="total-item">
-              <p class="lbl">Anticipo (50%)</p>
-              <p class="val">$5,220</p>
-            </div>
-            <div class="total-item">
-              <p class="lbl">Saldo restante</p>
-              <p class="val">$5,220</p>
-            </div>
-          </div>
-        </div>
-        <div class="card-pane" id="pux3-itinerario">
-          <ul class="itinerary">
-            <li><span class="it-time">08:00 am</span><span class="it-place"><strong>Salida desde Mérida</strong></span>
-            </li>
-            <li><span class="it-time">10:00–12:00</span><span class="it-place"><strong>Uxmal</strong> Zona arqueológica
-                (2 hrs)</span></li>
-            <li><span class="it-time">12:20–01:20</span><span class="it-place"><strong>Kabah</strong> Zona arqueológica
-                (1 hr)</span></li>
-            <li><span class="it-time">01:40–02:40</span><span class="it-place"><strong>Restaurante Halach
-                  Huinic</strong> 3 tiempos (1 hr)</span></li>
-            <li><span class="it-time">02:45–04:15</span><span class="it-place"><strong>Choco Story</strong> Museo del
-                cacao (1.5 hrs)</span></li>
-            <li><span class="it-time">~05:30 pm</span><span class="it-place"><strong>Regreso a Mérida</strong></span>
-            </li>
-          </ul>
-        </div>
-        <div class="card-pane" id="pux3-incluye">
-          <div class="inc-cols">
-            <div>
-              <p class="inc-sub">✅ Incluye</p>
-              <ul class="inc-list">
-                <li><span class="check">✓</span>Transporte exclusivo A/C</li>
-                <li><span class="check">✓</span>Chofer + Guía certificado</li>
-                <li><span class="check">✓</span>Comida típica 3 tiempos</li>
-                <li><span class="check">✓</span>Nevera con hielo</li>
-              </ul>
-            </div>
-            <div>
-              <p class="inc-sub">❌ No incluye</p>
-              <ul class="no-inc-list">
-                <li><span class="cross">✗</span>Bebidas en restaurante</li>
-                <li><span class="cross">✗</span>Uxmal: MX $275 / Ext $604</li>
-                <li><span class="cross">✗</span>Kabah: MX $85 / Ext $155</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div><!-- /grid -->
-
-    <!-- Resumen privado Coloradas -->
-    <div class="summary-wrap">
-      <div class="summary-card" style="border-color:var(--gold);border-width:2px;">
-        <div class="summary-grid">
-          <div class="sum-item">
-            <p class="lbl">Modalidad</p>
-            <p class="val" style="font-size:1rem;">🔒 Tour Privado</p>
-          </div>
-          <div class="sum-item">
-            <p class="lbl">Martes elegido</p>
-            <p class="val" style="font-size:1rem;">🐊 Coloradas Plus</p>
-          </div>
-          <div class="sum-item">
-            <p class="lbl">Total 4 días</p>
-            <p class="val highlight">$51,320</p>
-          </div>
-          <div class="sum-item">
-            <p class="lbl">Total P/P</p>
-            <p class="val highlight">$6,415</p>
-          </div>
-          <div class="sum-item">
-            <p class="lbl">Total anticipos (50%)</p>
-            <p class="val">$25,660</p>
-          </div>
-        </div>
-        <p class="note">
-          <strong>Desglose:</strong> Lunes Chichén Itzá $11,160 + Martes Coloradas $17,600 + Miércoles 4 Cenotes $12,120
-          + Jueves Uxmal $10,440.<br>
-          <strong>Anticipo:</strong> 50% del total de cada tour para confirmar reserva · Saldo en efectivo al abordar o
-          1 día antes por transferencia.<br>
-          <strong>Sin descuento grupal</strong> en modalidad privada · Vehículo exclusivo (Nissan Urvan) · Sin pasajeros
-          externos · Precio válido para 8–10 personas.
-        </p>
-      </div>
     </div>
   </div>
 
-  <script>
-    function switchMain(option) {
-      document.querySelectorAll('.option-panel').forEach(p => p.classList.remove('active'));
-      document.getElementById('panel-' + option).classList.add('active');
-      document.querySelectorAll('.tab-btn').forEach((b, i) => {
-        b.classList.toggle('active', (i === 0 && option === 'celestun') || (i === 1 && option === 'coloradas'));
-      });
-    }
+<script>
+function switchMain(option) {
+  document.querySelectorAll('.option-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('panel-' + option).classList.add('active');
+  document.querySelectorAll('.tab-btn').forEach((b, i) => {
+    b.classList.toggle('active', (i === 0 && option === 'celestun') || (i === 1 && option === 'coloradas'));
+  });
+}
 
-    function switchPriv(option) {
-      ['ppanel-pcele', 'ppanel-pcolo'].forEach(id => document.getElementById(id).classList.remove('active'));
-      document.getElementById('ppanel-' + option).classList.add('active');
-      ['ptab-celestun', 'ptab-coloradas'].forEach((id, i) => {
-        document.getElementById(id).classList.toggle('active', (i === 0 && option === 'pcele') || (i === 1 && option === 'pcolo'));
-      });
-    }
+function switchPriv(option) {
+  ['ppanel-pcele','ppanel-pcolo'].forEach(id => document.getElementById(id).classList.remove('active'));
+  document.getElementById('ppanel-' + option).classList.add('active');
+  ['ptab-celestun','ptab-coloradas'].forEach((id,i) => {
+    document.getElementById(id).classList.toggle('active', (i===0 && option==='pcele') || (i===1 && option==='pcolo'));
+  });
+}
 
-    function switchCard(btn, paneId) {
-      const card = btn.closest('.card');
-      card.querySelectorAll('.card-tab').forEach(t => t.classList.remove('active'));
-      card.querySelectorAll('.card-pane').forEach(p => p.classList.remove('active'));
-      btn.classList.add('active');
-      document.getElementById(paneId).classList.add('active');
-    }
-  </script>
+function switchCard(btn, paneId) {
+  const card = btn.closest('.card');
+  card.querySelectorAll('.card-tab').forEach(t => t.classList.remove('active'));
+  card.querySelectorAll('.card-pane').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(paneId).classList.add('active');
+}
+</script>
 </body>
-
 </html>
